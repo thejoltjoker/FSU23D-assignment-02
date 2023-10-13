@@ -18,13 +18,14 @@ export const getFriends = () => {
  * @param {string} name - The name of the friend.
  * @param {string} number - The number of the friend.
  * @param {string} emoji - The emoji associated with the friend.
+ * @returns {object} An object with friend attributes.
  */
-export const setFriend = (name, number, emoji = "🥸") => {
+export const insertFriend = (name, number, emoji = "🥸") => {
   // Get existing friends
   let friends = getFriends();
 
   // Use timestamp as ID to avoid collision
-  let id = Date.now();
+  let id = Date.now().toString();
 
   // Add the new friend to friends object
   let friend = { id: id, name: name, number: number, emoji: emoji };
@@ -36,12 +37,43 @@ export const setFriend = (name, number, emoji = "🥸") => {
   return friend;
 };
 
+/**
+ * Updates an existing friend in the list and stores it in local storage.
+ * @param {string} id - The id of the friend.
+ * @param {string} name - The name of the friend.
+ * @param {string} number - The number of the friend.
+ * @param {string} emoji - The emoji associated with the friend.
+ * @returns {object} An object with friend attributes.
+ */
+export const updateFriend = (id, name, number, emoji) => {
+  // Get existing friends
+  let friends = getFriends();
+
+  // Add the new friend to friends object
+  let friend = { id: id, name: name, number: number, emoji: emoji };
+
+  const index = friends.findIndex((friend) => friend.id == id);
+
+  // Update friend in array
+  friends[index] = friend;
+
+  // Save friends to localStorage
+  window.localStorage.setItem("friend", JSON.stringify(friends));
+
+  return friend;
+};
+
+/**
+ * Delete an existing friend from local storage.
+ * @param {string} id - The id of the friend.
+ */
 export const dropFriend = (id) => {
   // Get existing friends
   let friends = getFriends();
   const index = friends.findIndex((friend) => friend.id == id);
-  console.log(index);
-  friends.splice(index, 1); // remove 1 element at index 2 (value: 3)
+
+  // Delete friend from array
+  friends.splice(index, 1);
 
   // Save friends to localStorage
   window.localStorage.setItem("friend", JSON.stringify(friends));
