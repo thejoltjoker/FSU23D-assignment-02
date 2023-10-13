@@ -32,8 +32,8 @@ export const clearList = () => {
   friendsList.innerHTML = "";
 };
 
-// TODO: displayFriend
 export const showFriend = (friend, animate = false) => {
+  // TODO cleanup
   // Show friend in list
   // Create the main container div element
   const friendDiv = document.createElement("div");
@@ -65,12 +65,15 @@ export const showFriend = (friend, animate = false) => {
   const numberHeading = document.createElement("h3");
   numberHeading.className = "number muted";
   numberHeading.textContent = formatPhoneNumber(friend.number);
-  const idParagraph = document.createElement("p");
-  idParagraph.className = "number muted";
-  idParagraph.textContent = friend.id;
+  // TODO remove on publish
+  // const idParagraph = document.createElement("p");
+  // idParagraph.className = "number muted";
+  // idParagraph.textContent = friend.id;
   metaDiv.appendChild(nameHeading);
   metaDiv.appendChild(numberHeading);
-  metaDiv.appendChild(idParagraph);
+
+  // TODO remove on publish
+  // metaDiv.appendChild(idParagraph);
 
   // Create the button group div and add buttons
   const buttonGroupDiv = document.createElement("div");

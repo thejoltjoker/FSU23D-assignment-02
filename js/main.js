@@ -15,13 +15,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
   const form = document.querySelector("#friend-form");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-
+    const messageDiv = document.querySelector("#friend-form-message");
     const name = document.querySelector("#input-name");
     const number = document.querySelector("#input-number");
 
     // Testing purposes
-    name.value = "John Doe";
-    number.value = randomPhoneNumber();
+    // TODO remove this
+    // name.value = "John Doe";
+    // number.value = randomPhoneNumber();
 
     if (name.value && isPhoneNumber(number.value)) {
       let emoji = randomEmoji();
@@ -36,8 +37,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
       name.value = "";
       number.value = "";
     } else if (name.value && number.value) {
+      messageDiv.classList.remove("display-none");
+      messageDiv.innerText = `🤔 ${number.value} is not a number...`;
       console.log(`${number.value} is not a number...`);
     } else {
+      messageDiv.classList.remove("display-none");
+      messageDiv.innerText = `🤓 You need to fill out all fields!`;
       console.log("No new friends for you...");
     }
   });
@@ -64,21 +69,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
   });
 
-  // Delete single friend
-  // const deleteButtons = document.querySelectorAll("[id^='drop-friend-']");
-  // deleteButtons.forEach((button) => {
-  //   button.addEventListener("click", (e) => {
-  //     const id = e.target.getAttribute("data-friend-id");
-  //     const friendDiv = document.querySelector(`#friend-${id}`);
-  //     console.log(friendDiv);
-  //     friendDiv.classList.add("slide-up");
-  //     setTimeout(() => {
-  //       friendDiv.remove();
-  //     }, 1000);
-  //   });
-  // });
   const addFriendLink = document.querySelector("#add-friend");
   const modalContainer = document.querySelector(".modal-container");
+  modalContainer.classList.add("display-none");
   addFriendLink.addEventListener("click", (e) => {
     e.preventDefault();
     modalContainer.classList.add("fade-in");

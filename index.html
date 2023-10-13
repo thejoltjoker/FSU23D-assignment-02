@@ -20,7 +20,8 @@
       <h1 class="text-center mb-6">✨ Friends 4 Ever ✨</h1>
       <a href="" id="add-friend">🤗 Add friend</a>
       <div id="friends-list" class="flex flex-col transition">
-        <div class="friend inline-flex items-center p-3 radius-3 transition">
+        <!-- TODO Remove this, only for testing
+          <div class="friend inline-flex items-center p-3 radius-3 transition">
           <div class="avatar flex">
             <img src="https://thispersondoesnotexist.com/" alt="Avatar" class="radius-50" />
           </div>
@@ -32,42 +33,15 @@
             <button class="button" id="edit-friend-#">✏️</button>
             <button class="button" id="drop-friend-#">🗑️</button>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="text-center font-bold mt-3">
         <a href="" id="clear-list" data-before="😭 " class="transition">Clear list</a>
       </div>
     </div>
   </div>
-  <!-- <div class="modal fade show" id="exampleModalLg" tabindex="-1" aria-labelledby="exampleModalLgLabel" style="display: block;" aria-modal="true" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-4" id="exampleModalLgLabel">Large modal</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-      </div>
-    </div>
-  </div> -->
-  <!-- <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalCenterTitle">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>This is a vertically centered modal.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div> -->
   <!-- Modal -->
+  <!-- TODO add warning if wrong input -->
   <div class="modal-container flex transition">
     <div class="modal-content flex m-auto">
       <div class="artboard flex flex-col radius-4 shadow-lg mx-auto p-3">
@@ -87,6 +61,8 @@
             </div>
             <div class="mb-4 font-size-5">
               <input type="tel" name="number" id="input-number" class="transition" />
+            </div>
+            <div id="friend-form-message" class="display-none">
             </div>
             <button type="submit" id="save-button" class="button bg-cyan">
               😻 Save 😻
