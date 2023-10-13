@@ -1,8 +1,9 @@
 @use "variables" as *;
 @use "mixins" as *;
+@use "sass:math";
 
 .transition {
-  transition: all $transition-duration ease;
+  @include transition();
 }
 
 .container {
@@ -119,7 +120,7 @@
 
 // Shadow
 .shadow-sm {
-  box-shadow: 0 $base-size / 2 $base-size 0
+  box-shadow: 0 math.div($base-size, 2) $base-size 0
     color-mix(in srgb, map-get($colors, "pink-5") 50%, rgba(0, 0, 0, 0.2) 50%);
 }
 .shadow-lg {
@@ -133,6 +134,15 @@
     font-size: $base-size * $i;
   }
 }
+
+.font-thin {
+  font-weight: 300;
+}
+
+.font-regular {
+  font-weight: 400;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -222,7 +232,7 @@ textarea {
   border: 1px solid map-get($colors, "gray-3");
   @include padding(2);
   &:focus {
-    box-shadow: 0 $base-size / 3 $base-size 0
+    box-shadow: 0 math.div($base-size, 3) $base-size 0
       color-mix(in srgb, map-get($colors, "pink-5") 10%, rgba(0, 0, 0, 0.1) 50%);
     border: 1px solid map-get($colors, "pink-5");
     outline: none;
@@ -295,7 +305,7 @@ textarea {
 }
 
 .slow-flashing {
-  @include flashing($animation-duration*2);
+  @include flashing($animation-duration * 2);
 }
 
 @keyframes flashing {
@@ -304,5 +314,52 @@ textarea {
   }
   to {
     opacity: 0.5;
+  }
+}
+
+.spin-in {
+  animation-duration: $animation-duration;
+  animation-name: spinin;
+  animation-iteration-count: 1;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.spin-out {
+  animation-duration: $animation-duration;
+  animation-name: spinin;
+  animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  animation-direction: reverse;
+}
+
+@keyframes spinin {
+  from {
+    rotate: 360deg;
+  }
+  to {
+    rotate: 0deg;
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    rotate: -1deg;
+  }
+
+  20%,
+  80% {
+    rotate: 2deg;
+  }
+
+  30%,
+  50%,
+  70% {
+    rotate: -4deg;
+  }
+
+  40%,
+  60% {
+    rotate: 4deg;
   }
 }

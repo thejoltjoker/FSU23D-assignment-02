@@ -2,6 +2,7 @@ import * as storage from "./storage.js";
 import { cleanNumber, formatPhoneNumber } from "./utility.js";
 
 let currentlyEditing;
+const animationDuration = 500;
 
 const deleteFriend = (id) => {
   const friendDiv = document.querySelector(`#friend-${id}`);
@@ -44,6 +45,8 @@ export const editFriend = (id) => {
   if (currentlyEditing) {
     document.querySelector(`#name-input-${currentlyEditing}`).disabled = true;
     document.querySelector(`#number-input-${currentlyEditing}`).disabled = true;
+    document.querySelector(`#edit-friend-${currentlyEditing}`).textContent =
+      "✏️";
   }
 
   // Keep track of what's currently being edited
@@ -69,12 +72,35 @@ export const editFriend = (id) => {
     editButton.textContent = "✏️";
     nameInput.disabled = true;
     numberInput.disabled = true;
+    currentlyEditing = null;
+    // Restore button functionality
     editButton.onclick = (e) => {
       editFriend(e.target.getAttribute("data-friend-id"));
     };
   };
 };
+const createButton = (friendId, divId, emoji, onClick) => {
+  const buttonElem = document.createElement("button");
+  buttonElem.classList.add("button");
+  buttonElem.id = divId;
+  buttonElem.setAttribute("data-friend-id", friendId);
 
+  const emojiElem = document.createElement("div");
+  buttonElem.appendChild(emojiElem);
+  emojiElem.className = "emoji";
+  emojiElem.textContent = emoji;
+
+  buttonElem.onclick = (e) => {
+    let id;
+    if (e.target.className == "emoji") {
+      id = e.target.parentElement.getAttribute("data-friend-id");
+    } else {
+      id = e.target.getAttribute("data-friend-id");
+    }
+    onClick(id);
+  };
+  return { buttonElem, emojiElem };
+};
 export const showFriend = (friend, animate = false) => {
   // TODO cleanup
   // Deconstruct friend
@@ -112,9 +138,9 @@ export const showFriend = (friend, animate = false) => {
 
   // Create input field for name
   const nameHeading = document.createElement("h3");
-  nameHeading.classList.add("mb-2");
+  nameHeading.classList.add("font-size-5", "mb-2");
   const nameInput = document.createElement("input");
-  nameInput.classList.add("transition");
+  nameInput.classList.add("transition", "color-gray-5");
   nameInput.disabled = true;
   nameInput.type = "text";
   nameInput.name = `name-${id}`;
@@ -122,9 +148,9 @@ export const showFriend = (friend, animate = false) => {
   nameInput.value = name;
 
   const numberHeading = document.createElement("h4");
-  numberHeading.classList.add("muted");
+  numberHeading.classList.add("font-size-4", "font-thin");
   const numberInput = document.createElement("input");
-  numberInput.classList.add("transition");
+  numberInput.classList.add("transition", "color-gray-6");
   numberInput.disabled = true;
   numberInput.type = "text";
   numberInput.name = `number-${id}`;
@@ -141,25 +167,19 @@ export const showFriend = (friend, animate = false) => {
   const buttonGroupDiv = document.createElement("div");
   buttonGroupDiv.classList.add("button-group", "justify-self-end");
 
-  const editButton = document.createElement("button");
-  editButton.classList.add("button");
-  editButton.id = `edit-friend-${id}`;
-  editButton.setAttribute("data-friend-id", id);
-  editButton.textContent = "✏️";
+  const { buttonElem: editButton, emojiElem: editButtonEmoji } = createButton(
+    id,
+    `edit-friend-${id}`,
+    "✏️",
+    editFriend
+  );
 
-  editButton.onclick = (e) => {
-    editFriend(e.target.getAttribute("data-friend-id"));
-  };
-
-  const dropButton = document.createElement("button");
-  dropButton.classList.add("button");
-  dropButton.id = `drop-friend-${id}`;
-  dropButton.setAttribute("data-friend-id", id);
-  dropButton.textContent = "🗑️";
-
-  dropButton.onclick = (e) => {
-    deleteFriend(e.target.getAttribute("data-friend-id"));
-  };
+  const { buttonElem: dropButton, emojiElem: dropButtonEmoji } = createButton(
+    id,
+    `drop-friend-${id}`,
+    "🗑️",
+    deleteFriend
+  );
 
   buttonGroupDiv.appendChild(editButton);
   buttonGroupDiv.appendChild(dropButton);

@@ -100,6 +100,17 @@ a {
     background-color: map-get($colors, "gray-1");
   }
 
+  button {
+    .emoji {
+      @include transition();
+    }
+    &:hover {
+      .emoji {
+        @include shake($animation-duration * 2);
+        scale: 1.2;
+      }
+    }
+  }
   input[type="text"],
   input[type="number"],
   input[type="email"],
@@ -113,8 +124,8 @@ a {
     text-decoration-color: map-get($colors, "pink-4");
     box-shadow: none;
     margin: 0;
-    // background: map-get($colors, "gray-2");
     color: map-get($colors, "red");
+
     &:hover {
       cursor: text;
     }
@@ -122,7 +133,9 @@ a {
       border: none;
       text-decoration: dashed;
       color: map-get($colors, "gray-5");
-      // background: none;
+      &[id^="number-input"] {
+        color: map-get($colors, "gray-6");
+      }
     }
     &:focus {
       box-shadow: none;

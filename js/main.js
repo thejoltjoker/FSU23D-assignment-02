@@ -55,16 +55,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
     let name = randomInArray(placeholderNames);
     let number = randomPhoneNumber();
     // TODO Change this back before commit
-    // formName.value = "";
-    // formNumber.value = "";
-    formName.value = name;
-    formNumber.value = number;
+    formName.value = "";
+    formNumber.value = "";
+    // formName.value = name;
+    // formNumber.value = number;
     formName.placeholder = name;
     formNumber.placeholder = number;
   };
   const showModal = () => {
     // TODO remove this before commit
-    clearForm();
+    // clearForm();
     // END TODO
 
     modalContainer.classList.add("fade-in");

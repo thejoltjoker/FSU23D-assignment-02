@@ -2,10 +2,9 @@
 <html lang="en">
   <!-- TODO add shakey shakey to buttons on hover 
   TODO add falling hearts background
-  TODO add edit functionality
-  TODO add padding to add friend link
   TODO add waving hand animation to add friend modal
   TODO switch from photos to emojis
+  TODO spin emojis on edit button click
 -->
 
   <head>
@@ -21,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Color+Emoji&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Noto+Color+Emoji&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -38,7 +37,7 @@
           >🤗 Add friend</a
         >
         <div id="friends-list" class="flex flex-col transition">
-          <!-- TODO Remove this, only for testing -->
+          <!-- TODO Remove this, only for testing
           <div class="friend inline-flex items-center p-3 radius-3 transition">
             <div class="avatar no-select">😅</div>
             <div class="meta flex flex-col ml-3 grow">
@@ -56,7 +55,7 @@
               <button class="button" id="edit-friend-#">✏️</button>
               <button class="button" id="drop-friend-#">🗑️</button>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="text-center font-bold mt-3">
           <a href="" id="clear-list" class="transition" data-before="😭 "
@@ -66,7 +65,7 @@
       </div>
     </div>
     <!-- Modal -->
-    <!-- TODO add warning if wrong input -->
+    <!-- TODO Style warning if wrong input -->
     <div class="modal-container flex transition">
       <div class="modal-content flex m-auto">
         <div class="artboard flex flex-col radius-4 shadow-lg mx-auto p-3">

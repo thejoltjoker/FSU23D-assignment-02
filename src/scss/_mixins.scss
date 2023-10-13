@@ -20,3 +20,19 @@
   animation-timing-function: ease-in-out;
   animation-direction: alternate;
 }
+
+@mixin shake($speed) {
+  animation-duration: $speed;
+  animation-name: shake;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+
+@mixin transition(
+  $property: all,
+  $duration: $transition-duration,
+  $interpolation: ease
+) {
+  transition: $property $transition-duration $interpolation;
+}

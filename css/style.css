@@ -129,6 +129,14 @@
   background-color: #101041;
 }
 
+.color-gray-6 {
+  color: #9294af;
+}
+
+.bg-gray-6 {
+  background-color: #9294af;
+}
+
 .color-red {
   color: #d74467;
 }
@@ -682,6 +690,14 @@
   font-size: 4rem;
 }
 
+.font-thin {
+  font-weight: 300;
+}
+
+.font-regular {
+  font-weight: 400;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -910,6 +926,43 @@ textarea::placeholder {
     opacity: 0.5;
   }
 }
+.spin-in {
+  animation-duration: 0.5s;
+  animation-name: spinin;
+  animation-iteration-count: 1;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.spin-out {
+  animation-duration: 0.5s;
+  animation-name: spinin;
+  animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  animation-direction: reverse;
+}
+
+@keyframes spinin {
+  from {
+    rotate: 360deg;
+  }
+  to {
+    rotate: 0deg;
+  }
+}
+@keyframes shake {
+  10%, 90% {
+    rotate: -1deg;
+  }
+  20%, 80% {
+    rotate: 2deg;
+  }
+  30%, 50%, 70% {
+    rotate: -4deg;
+  }
+  40%, 60% {
+    rotate: 4deg;
+  }
+}
 html {
   box-sizing: border-box;
   font-size: 16px;
@@ -992,6 +1045,17 @@ a {
 .friend:hover {
   background-color: #f2f2fb;
 }
+.friend button .emoji {
+  transition: all 0.3s ease;
+}
+.friend button:hover .emoji {
+  animation-duration: 1s;
+  animation-name: shake;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+  scale: 1.2;
+}
 .friend input[type=text],
 .friend input[type=number],
 .friend input[type=email],
@@ -1023,6 +1087,13 @@ a {
   -webkit-text-decoration: dashed;
           text-decoration: dashed;
   color: #101041;
+}
+.friend input[type=text]:disabled[id^=number-input],
+.friend input[type=number]:disabled[id^=number-input],
+.friend input[type=email]:disabled[id^=number-input],
+.friend input[type=tel]:disabled[id^=number-input],
+.friend textarea:disabled[id^=number-input] {
+  color: #9294af;
 }
 .friend input[type=text]:focus,
 .friend input[type=number]:focus,
