@@ -1,0 +1,14 @@
+@use "variables" as *;
+
+@mixin background-opacity($color, $opacity) {
+  background: $color;
+  background: rgba($color, $opacity);
+}
+
+@mixin padding($level){
+  padding: $base-size * map-get($levels, $level);
+}
+
+@mixin border-radius($level){
+  border-radius: $base-size * map-get($levels, $level);
+}

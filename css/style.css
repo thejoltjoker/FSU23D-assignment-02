@@ -9,6 +9,10 @@
   width: 100%;
 }
 
+.height-full {
+  height: 100%;
+}
+
 .flex {
   display: flex;
 }
@@ -45,7 +49,114 @@
   justify-self: end;
 }
 
-/* Margin & Padding */
+.color-pink-1 {
+  color: #fbe6ec;
+}
+
+.bg-pink-1 {
+  background-color: #fbe6ec;
+}
+
+.color-pink-2 {
+  color: #f6c4d1;
+}
+
+.bg-pink-2 {
+  background-color: #f6c4d1;
+}
+
+.color-pink-3 {
+  color: #f4b7c6;
+}
+
+.bg-pink-3 {
+  background-color: #f4b7c6;
+}
+
+.color-pink-4 {
+  color: #f095ab;
+}
+
+.bg-pink-4 {
+  background-color: #f095ab;
+}
+
+.color-pink-5 {
+  color: #ea7793;
+}
+
+.bg-pink-5 {
+  background-color: #ea7793;
+}
+
+.color-gray-1 {
+  color: #f2f2fb;
+}
+
+.bg-gray-1 {
+  background-color: #f2f2fb;
+}
+
+.color-gray-2 {
+  color: #e9e9f1;
+}
+
+.bg-gray-2 {
+  background-color: #e9e9f1;
+}
+
+.color-gray-3 {
+  color: #cfd4e7;
+}
+
+.bg-gray-3 {
+  background-color: #cfd4e7;
+}
+
+.color-gray-4 {
+  color: #545477;
+}
+
+.bg-gray-4 {
+  background-color: #545477;
+}
+
+.color-gray-5 {
+  color: #101041;
+}
+
+.bg-gray-5 {
+  background-color: #101041;
+}
+
+.color-red {
+  color: #d74467;
+}
+
+.bg-red {
+  background-color: #d74467;
+}
+
+.color-cyan {
+  color: #57e2ef;
+}
+
+.bg-cyan {
+  background-color: #57e2ef;
+}
+
+.color-white {
+  color: #fefefe;
+}
+
+.bg-white {
+  background-color: #fefefe;
+}
+
+.m-auto {
+  margin: auto;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -531,8 +642,44 @@
   padding-bottom: 4rem;
 }
 
+.shadow-sm {
+  box-shadow: 0 0.5rem 1rem 0 color-mix(in srgb, #ea7793 50%, rgba(0, 0, 0, 0.2) 50%);
+}
+
 .shadow-lg {
   box-shadow: 0 25px 70px 0 color-mix(in srgb, #ea7793 50%, rgba(0, 0, 0, 0.2) 50%);
+}
+
+.font-size-1 {
+  font-size: 0.25rem;
+}
+
+.font-size-2 {
+  font-size: 0.5rem;
+}
+
+.font-size-3 {
+  font-size: 1rem;
+}
+
+.font-size-4 {
+  font-size: 1.33rem;
+}
+
+.font-size-5 {
+  font-size: 1.5rem;
+}
+
+.font-size-6 {
+  font-size: 2rem;
+}
+
+.font-size-7 {
+  font-size: 3rem;
+}
+
+.font-size-8 {
+  font-size: 4rem;
 }
 
 .font-bold {
@@ -622,6 +769,10 @@
   border-radius: 0.5rem;
   background-color: #fefefe;
 }
+.button-group .button {
+  border: none;
+  border-radius: 0;
+}
 .button-group .button:first-child {
   border-right: 1px solid #cfd4e7;
 }
@@ -634,19 +785,51 @@
   font-style: inherit;
   font-weight: inherit;
   line-height: inherit;
+  border-radius: 0.5rem;
   padding: 1rem;
   cursor: pointer;
+  border: 1px solid #cfd4e7;
+}
+
+input[type=text],
+input[type=number],
+input[type=email],
+input[type=tel],
+textarea {
+  background-color: transparent;
+  border-width: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  border: 1px solid #cfd4e7;
+  padding: 0.5rem;
+}
+input[type=text]:focus,
+input[type=number]:focus,
+input[type=email]:focus,
+input[type=tel]:focus,
+textarea:focus {
+  box-shadow: 0 0.3333333333rem 1rem 0 color-mix(in srgb, #ea7793 10%, rgba(0, 0, 0, 0.1) 50%);
+  border: 1px solid #ea7793;
+  outline: none;
 }
 
 .blackout {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
+  z-index: 10;
   width: 100%;
   height: 100%;
-  z-index: 10;
-  opacity: 75%;
-  background-color: #ea7793;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+  background: #ea7793;
+  background: rgba(234, 119, 147, 0.75);
 }
 
 .no-select {
@@ -655,6 +838,52 @@
           user-select: none;
 }
 
+.modal-container {
+  background: #ea7793;
+  background: rgba(234, 119, 147, 0.75);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+}
+
+.modal-content {
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+}
+
+.display-none {
+  display: none;
+}
+
+.fade-in {
+  animation-duration: 0.5s;
+  animation-name: fadein;
+  animation-iteration-count: 1;
+  transition-timing-function: ease;
+}
+
+.fade-out {
+  animation-duration: 0.5s;
+  animation-name: fadein;
+  animation-iteration-count: 1;
+  transition-timing-function: ease;
+  animation-direction: reverse;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 html {
   box-sizing: border-box;
   font-size: 16px;
@@ -720,6 +949,7 @@ a {
 .artboard {
   background: #fefefe;
   max-width: 768px;
+  border-radius: 1.33rem;
 }
 
 .friend {
@@ -743,14 +973,14 @@ a {
 }
 
 .slide-down {
-  animation-duration: 0.6s;
+  animation-duration: 0.5s;
   animation-name: slideDown;
   animation-iteration-count: 1;
   transition-timing-function: ease;
 }
 
 .slide-up {
-  animation-duration: 0.6s;
+  animation-duration: 0.5s;
   animation-name: slideDown;
   animation-direction: reverse;
   animation-iteration-count: 1;

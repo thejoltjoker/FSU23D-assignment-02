@@ -5,6 +5,8 @@ import * as storage from "./storage.js";
 import { randomEmoji } from "./emoji.js";
 import { randomPhoneNumber, isPhoneNumber } from "./utility.js";
 
+const animationDuration = 500;
+
 document.addEventListener("DOMContentLoaded", function (event) {
   // Get friends from localStorage on page load
   display.populateList();
@@ -75,6 +77,28 @@ document.addEventListener("DOMContentLoaded", function (event) {
   //     }, 1000);
   //   });
   // });
+  const addFriendLink = document.querySelector("#add-friend");
+  const modalContainer = document.querySelector(".modal-container");
+  addFriendLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    modalContainer.classList.add("fade-in");
+    modalContainer.classList.remove("display-none");
+    setTimeout(() => {
+      modalContainer.classList.remove("fade-in");
+    }, animationDuration);
+  });
+
+  // blackoutDiv.style.opacity = 0;
+  modalContainer.addEventListener("click", (e) => {
+    console.log(e);
+    if (e.target == modalContainer) {
+      modalContainer.classList.add("fade-out");
+      setTimeout(() => {
+        modalContainer.classList.add("display-none");
+        modalContainer.classList.remove("fade-out");
+      }, animationDuration);
+    }
+  });
 });
 
 // setFriend("John Doe", "123456789");

@@ -1,6 +1,7 @@
 @use "variables" as *;
+@use "mixins" as *;
 
-.transition{
+.transition {
   transition: all $transition-duration ease;
 }
 
@@ -8,11 +9,15 @@
   width: 100%;
 }
 
+.height-full {
+  height: 100%;
+}
+
 .flex {
   display: flex;
 }
 
-.inline-flex{
+.inline-flex {
   display: inline-flex;
 }
 
@@ -38,72 +43,97 @@
 .items-center {
   align-items: center;
 }
-.justify-self-end{
+.justify-self-end {
   justify-self: end;
 }
 
-/* Margin & Padding */
+// Colors
+@each $name, $color in $colors {
+  .color-#{$name} {
+    color: $color;
+  }
+
+  .bg-#{$name} {
+    background-color: $color;
+  }
+}
+
+// Margin & Padding
+.m-auto {
+  margin: auto;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
 }
+
 @each $level, $i in $levels {
   .m-#{$level} {
-    margin: $base-size*$i;
+    margin: $base-size * $i;
   }
   .mx-#{$level} {
-    margin-left: $base-size*$i;
-    margin-right: $base-size*$i;
+    margin-left: $base-size * $i;
+    margin-right: $base-size * $i;
   }
   .my-#{$level} {
-    margin-top: $base-size*$i;
-    margin-bottom: $base-size*$i;
+    margin-top: $base-size * $i;
+    margin-bottom: $base-size * $i;
   }
   .ml-#{$level} {
-    margin-left: $base-size*$i;
+    margin-left: $base-size * $i;
   }
   .mr-#{$level} {
-    margin-right: $base-size*$i;
+    margin-right: $base-size * $i;
   }
   .mt-#{$level} {
-    margin-top: $base-size*$i;
+    margin-top: $base-size * $i;
   }
   .mb-#{$level} {
-    margin-bottom: $base-size*$i;
+    margin-bottom: $base-size * $i;
   }
   .p-#{$level} {
-    padding: $base-size*$i;
+    padding: $base-size * $i;
   }
   .px-#{$level} {
-    padding-left: $base-size*$i;
-    padding-right: $base-size*$i;
+    padding-left: $base-size * $i;
+    padding-right: $base-size * $i;
   }
   .py-#{$level} {
-    padding-top: $base-size*$i;
-    padding-bottom: $base-size*$i;
+    padding-top: $base-size * $i;
+    padding-bottom: $base-size * $i;
   }
   .pl-#{$level} {
-    padding-left: $base-size*$i;
+    padding-left: $base-size * $i;
   }
   .pr-#{$level} {
-    padding-right: $base-size*$i;
+    padding-right: $base-size * $i;
   }
   .pt-#{$level} {
-    padding-top: $base-size*$i;
+    padding-top: $base-size * $i;
   }
   .pb-#{$level} {
-    padding-bottom: $base-size*$i;
+    padding-bottom: $base-size * $i;
   }
 }
 
 // Shadow
+.shadow-sm {
+  box-shadow: 0 $base-size / 2 $base-size 0
+    color-mix(in srgb, map-get($colors, "pink-5") 50%, rgba(0, 0, 0, 0.2) 50%);
+}
 .shadow-lg {
   box-shadow: 0 25px 70px 0
     color-mix(in srgb, map-get($colors, "pink-5") 50%, rgba(0, 0, 0, 0.2) 50%);
 }
 
 // Font
-.font-bold{
+@each $level, $i in $levels {
+  .font-size-#{$level} {
+    font-size: $base-size * $i;
+  }
+}
+.font-bold {
   font-weight: 700;
 }
 // Text
@@ -116,27 +146,28 @@
 }
 
 // Position
-.relative{
+.relative {
   position: relative;
 }
 
-.absolute{
+.absolute {
   position: absolute;
 }
 
 //Z-index
 @for $i from 1 through 5 {
   .z-#{$i*10} {
-    z-index: $i*10;
+    z-index: $i * 10;
   }
 }
 
 // Border radius
 @each $level, $i in $levels {
   .radius-#{$level} {
-    border-radius: $base-size*$i;
+    border-radius: $base-size * $i;
   }
 }
+
 .radius-50 {
   border-radius: 50%;
   overflow: hidden;
@@ -146,22 +177,21 @@
   opacity: 50%;
 }
 
-
-.button-group{
+.button-group {
   display: inline-flex;
   border: 1px solid map-get($colors, "gray-3");
   border-radius: $button-radius;
   background-color: map-get($colors, "white");
-  .button{
-    
-    &:first-child{
+  .button {
+    border: none;
+    border-radius: 0;
+    &:first-child {
       border-right: 1px solid map-get($colors, "gray-3");
     }
   }
-  
 }
 
-.button{
+.button {
   background-color: transparent;
   border-width: 0;
   font-family: inherit;
@@ -169,22 +199,93 @@
   font-style: inherit;
   font-weight: inherit;
   line-height: inherit;
-  padding: $base-size*map-get($levels, "3");
+  border-radius: $button-radius;
+  padding: $base-size * map-get($levels, 3);
   cursor: pointer;
+  border: 1px solid map-get($colors, "gray-3");
 }
 
-.blackout{
-  position: absolute;
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="tel"],
+textarea {
+  background-color: transparent;
+  border-width: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  border-radius: $button-radius;
+  cursor: pointer;
+  border: 1px solid map-get($colors, "gray-3");
+  @include padding(2);
+  &:focus {
+    box-shadow: 0 $base-size / 3 $base-size 0
+      color-mix(in srgb, map-get($colors, "pink-5") 10%, rgba(0, 0, 0, 0.1) 50%);
+    border: 1px solid map-get($colors, "pink-5");
+    outline: none;
+  }
+}
+
+.blackout {
+  position: fixed;
   top: 0;
   left: 0;
+  z-index: 10;
   width: 100%;
   height: 100%;
-  z-index: 10;
-  opacity: 75%;
-  background-color: map-get($colors, "pink-5");
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+  @include background-opacity(map-get($colors, "pink-5"), 0.75);
 }
 
 .no-select {
   user-select: none;
 }
 
+.modal-container {
+  @include background-opacity(map-get($colors, "pink-5"), 0.75);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+}
+.modal-content {
+  max-width: fit-content;
+}
+
+.display-none {
+  display: none;
+}
+
+.fade-in {
+  animation-duration: $animation-duration;
+  animation-name: fadein;
+  animation-iteration-count: 1;
+  transition-timing-function: ease;
+}
+.fade-out {
+  animation-duration: $animation-duration;
+  animation-name: fadein;
+  animation-iteration-count: 1;
+  transition-timing-function: ease;
+  animation-direction: reverse;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

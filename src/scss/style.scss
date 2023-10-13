@@ -1,6 +1,7 @@
 @use "sass:map";
 @use "sass:meta";
 @use "variables" as *;
+@use "mixins" as *;
 @use "utilities";
 
 // $vars: meta.module-variables("variables");
@@ -85,6 +86,7 @@ a {
 .artboard {
   background: map-get($colors, "white");
   max-width: map-get($breakpoints, "md");
+  @include border-radius(4);
 }
 
 .friend {
@@ -93,14 +95,14 @@ a {
   &:hover {
     background-color: map-get($colors, "gray-1");
   }
-  .avatar img{
+  .avatar img {
     max-width: calc($friend-list-item-height - $friend-list-item-padding * 2);
   }
 }
 
 #clear-list {
   color: map-get($colors, "red");
-  &:hover{
+  &:hover {
     color: color-mix(in srgb, map-get($colors, "red") 50%, #500);
   }
   &:before {
@@ -108,13 +110,14 @@ a {
   }
 }
 
-.slide-down{
+.slide-down {
   animation-duration: $animation-duration;
   animation-name: slideDown;
   animation-iteration-count: 1;
   transition-timing-function: ease;
 }
-.slide-up{
+
+.slide-up {
   animation-duration: $animation-duration;
   animation-name: slideDown;
   animation-direction: reverse;
@@ -122,6 +125,8 @@ a {
   animation-fill-mode: forwards;
   transition-timing-function: ease;
 }
+
+
 
 @keyframes logoanim {
   from {
@@ -133,13 +138,12 @@ a {
   }
 }
 
-
 @keyframes slideDown {
   from {
     margin-top: -$friend-list-item-height;
     opacity: 0;
   }
-  35%{
+  35% {
     opacity: 0;
   }
   to {

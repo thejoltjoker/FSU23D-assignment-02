@@ -2,64 +2,102 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Friends 4 Ever</title>
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👋</text></svg>">
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👋</text></svg>" />
   <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet" />
 </head>
 
 <body>
-  <!-- <div class="blackout"></div> -->
-  <div class="artboard flex flex-col radius-4 shadow-lg mt-7 mx-auto p-3">
-    <div class="logo text-center text-lg mt-6 pb-6 no-select">🦄</div>
-    <h1 class="text-center mb-6">
-      ✨ Friends 4 Ever ✨
-    </h1>
-    <a href="" id="add-friend">🤗 Add friend</a>
-    <div id="friends-list" class="flex flex-col transition">
-      <div class="friend inline-flex items-center p-3 radius-3 transition relative z-20">
-        <div class="avatar flex"><img src="https://thispersondoesnotexist.com/" alt="Avatar" class="radius-50"></div>
-        <div class="meta flex flex-col ml-3 grow">
-          <h2 class="name mb-2">John Doe</h2>
-          <h3 class="number muted">072-703 04 05</h3>
+  <div class="container pt-7">
+    <div class="artboard flex flex-col radius-4 shadow-lg mx-auto p-3">
+      <div class="logo text-center text-lg mt-6 pb-6 no-select">🦄</div>
+      <h1 class="text-center mb-6">✨ Friends 4 Ever ✨</h1>
+      <a href="" id="add-friend">🤗 Add friend</a>
+      <div id="friends-list" class="flex flex-col transition">
+        <div class="friend inline-flex items-center p-3 radius-3 transition">
+          <div class="avatar flex">
+            <img src="https://thispersondoesnotexist.com/" alt="Avatar" class="radius-50" />
+          </div>
+          <div class="meta flex flex-col ml-3 grow">
+            <h2 class="name mb-2">John Doe</h2>
+            <h3 class="number muted">072-703 04 05</h3>
+          </div>
+          <div class="button-group justify-self-end">
+            <button class="button" id="edit-friend-#">✏️</button>
+            <button class="button" id="drop-friend-#">🗑️</button>
+          </div>
         </div>
-        <div class="button-group justify-self-end">
-          <button class="button" id="edit-friend-#">
-            ✏️
-          </button>
-          <button class="button" id="drop-friend-#">
-            🗑️
-          </button>
+      </div>
+      <div class="text-center font-bold mt-3">
+        <a href="" id="clear-list" data-before="😭 " class="transition">Clear list</a>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="modal fade show" id="exampleModalLg" tabindex="-1" aria-labelledby="exampleModalLgLabel" style="display: block;" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-4" id="exampleModalLgLabel">Large modal</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
         </div>
       </div>
     </div>
-    <div class="text-center font-bold mt-3">
-      <a href="" id="clear-list" data-before="😭 " class="transition">Clear list</a>
+  </div> -->
+  <!-- <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalCenterTitle">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>This is a vertically centered modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
     </div>
-  </div>
+  </div> -->
   <!-- Modal -->
-  <div class="flex container">
-    <div class="modal absolute z-20">
-      <div class="artboard">
+  <div class="modal-container flex transition">
+    <div class="modal-content flex m-auto">
+      <div class="artboard flex flex-col radius-4 shadow-lg mx-auto p-3">
+        <div class="text-center font-size-7 mt-6 pb-6 no-select">👋</div>
+        <h2 class="text-center mb-6 font-bold">✨ New friend, yay ✨</h2>
         <div>
-          <form id="friend-form" method="post">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="input-name">
-            <label for="number">Number</label>
-            <input type="tel" name="number" id="input-number">
-            <button type="submit" id="save-button" class="button">😻 Save 😻</button>
+          <form id="friend-form" method="post" class="flex flex-col">
+            <div class="mb-2 font-bold color-gray-4">
+              <label for="name">Name</label>
+            </div>
+            <div class="mb-4 font-size-5">
+              <input type="text" name="name" id="input-name" class="transition" />
+            </div>
+
+            <div class="mb-2 font-bold color-gray-4">
+              <label for="number">Number</label>
+            </div>
+            <div class="mb-4 font-size-5">
+              <input type="tel" name="number" id="input-number" class="transition" />
+            </div>
+            <button type="submit" id="save-button" class="button bg-cyan">
+              😻 Save 😻
+            </button>
           </form>
-
-
         </div>
       </div>
     </div>
   </div>
+  <!-- <div class="blackout transition"></div> -->
+
   <script src="./js/main.js" type="module"></script>
 </body>
 
