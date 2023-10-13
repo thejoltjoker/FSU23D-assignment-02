@@ -2,39 +2,12 @@
 
 import * as display from "./display.js";
 import * as storage from "./storage.js";
-
-const re = /^(?:\d{3}|\(\d{3}\))([-/.])\d{3}\1\d{4}$/;
-
-const isPhoneNumber = (value) => {
-  const re = /^[\d- ]+$/;
-  return re.exec(value) ? true : false;
-};
-const randomPhoneNumber = () => {
-  let number = "";
-  while (number.length <= 10) {
-    number += Math.floor(Math.random() * 10);
-  }
-  return number;
-};
-console.log(randomPhoneNumber());
-const extractId = (value) => {
-  var re = /^\d+$/;
-  var arr = re.exec(value);
-  return arr;
-};
+import { randomEmoji } from "./emoji.js";
+import { randomPhoneNumber, isPhoneNumber } from "./utility.js";
 
 document.addEventListener("DOMContentLoaded", function (event) {
   // Get friends from localStorage on page load
-  const friends = storage.getFriends();
-
-  if (Object.keys(friends).length > 0) {
-    for (const id in friends) {
-      console.log(`Friend #${id} ${friends[id].name}`);
-      display.showFriend(friends[id]);
-    }
-  } else {
-    console.log(`You have no friends 😭`);
-  }
+  display.populateList();
 
   // Handle form submit
   const form = document.querySelector("#friend-form");
@@ -49,11 +22,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
     number.value = randomPhoneNumber();
 
     if (name.value && isPhoneNumber(number.value)) {
+      let emoji = randomEmoji();
       // perform operation with form input
-      console.log(`New friend ${name.value} with number ${number.value}, yay!`);
+      console.log(
+        `New friend ${name.value} ${emoji} with number ${number.value}, yay!`
+      );
 
       // Add friend to local storage
-      const friend = storage.setFriend(name.value, number.value);
+      const friend = storage.insertFriend(name.value, number.value);
       display.showFriend(friend, true);
       name.value = "";
       number.value = "";
@@ -73,6 +49,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
     if (clear.getAttribute("data-before") === confirmEmoji) {
       console.log("Clearing friends");
       storage.clearFriends();
+
+      // Clear ui
+      display.clearList();
+      display.populateList();
       // Reset link
       clear.setAttribute("data-before", "😭 ");
       clear.innerText = "Clear list";

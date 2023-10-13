@@ -12,6 +12,10 @@
   display: flex;
 }
 
+.inline-flex{
+  display: inline-flex;
+}
+
 .grow {
   flex-grow: 1;
 }
@@ -184,30 +188,3 @@
   user-select: none;
 }
 
-.slide-down{
-  animation-duration: $animation-duration;
-  animation-name: slideDown;
-  animation-iteration-count: 1;
-  transition-timing-function: ease;
-}
-.slide-up{
-  animation-duration: $animation-duration;
-  animation-name: slideDown;
-  animation-direction: reverse;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-  transition-timing-function: ease;
-}
-@keyframes slideDown {
-  from {
-    margin-top: -7rem;
-    opacity: 0;
-  }
-  35%{
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-    margin-top: 0 inherit;
-  }
-}

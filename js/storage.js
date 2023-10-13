@@ -1,3 +1,5 @@
+import { randomEmoji } from "./emoji.js";
+
 /**
  * Retrieves the list of friends from local storage.
  * @returns {Array} An array of friend objects, or an empty array if there are no friends.
@@ -20,12 +22,15 @@ export const getFriends = () => {
  * @param {string} emoji - The emoji associated with the friend.
  * @returns {object} An object with friend attributes.
  */
-export const insertFriend = (name, number, emoji = "🥸") => {
+export const insertFriend = (name, number, emoji) => {
   // Get existing friends
   let friends = getFriends();
 
   // Use timestamp as ID to avoid collision
   let id = Date.now().toString();
+
+  // Use random emoji if not given
+  // emoji = emoji || randomEmoji();
 
   // Add the new friend to friends object
   let friend = { id: id, name: name, number: number, emoji: emoji };

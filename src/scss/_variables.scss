@@ -52,3 +52,7 @@ $breakpoints: (
   "lg": 992px,
   "xl": 1200px,
 );
+
+// Custom
+$friend-list-item-height: 7rem;
+$friend-list-item-padding: $base-size * map-get($levels , "3");
