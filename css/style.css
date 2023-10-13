@@ -1,0 +1,778 @@
+/* Variables */
+/* Fonts */
+/* Colors */
+.transition {
+  transition: all 0.3s ease;
+}
+
+.container {
+  width: 100%;
+}
+
+.flex {
+  display: flex;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.shrink {
+  flex-shrink: 1;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-self-end {
+  justify-self: end;
+}
+
+/* Margin & Padding */
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.m-1 {
+  margin: 0.25rem;
+}
+
+.mx-1 {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+
+.my-1 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.ml-1 {
+  margin-left: 0.25rem;
+}
+
+.mr-1 {
+  margin-right: 0.25rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.p-1 {
+  padding: 0.25rem;
+}
+
+.px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.pl-1 {
+  padding-left: 0.25rem;
+}
+
+.pr-1 {
+  padding-right: 0.25rem;
+}
+
+.pt-1 {
+  padding-top: 0.25rem;
+}
+
+.pb-1 {
+  padding-bottom: 0.25rem;
+}
+
+.m-2 {
+  margin: 0.5rem;
+}
+
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.pl-2 {
+  padding-left: 0.5rem;
+}
+
+.pr-2 {
+  padding-right: 0.5rem;
+}
+
+.pt-2 {
+  padding-top: 0.5rem;
+}
+
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+
+.m-3 {
+  margin: 1rem;
+}
+
+.mx-3 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.my-3 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ml-3 {
+  margin-left: 1rem;
+}
+
+.mr-3 {
+  margin-right: 1rem;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+.mb-3 {
+  margin-bottom: 1rem;
+}
+
+.p-3 {
+  padding: 1rem;
+}
+
+.px-3 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py-3 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.pl-3 {
+  padding-left: 1rem;
+}
+
+.pr-3 {
+  padding-right: 1rem;
+}
+
+.pt-3 {
+  padding-top: 1rem;
+}
+
+.pb-3 {
+  padding-bottom: 1rem;
+}
+
+.m-4 {
+  margin: 1.33rem;
+}
+
+.mx-4 {
+  margin-left: 1.33rem;
+  margin-right: 1.33rem;
+}
+
+.my-4 {
+  margin-top: 1.33rem;
+  margin-bottom: 1.33rem;
+}
+
+.ml-4 {
+  margin-left: 1.33rem;
+}
+
+.mr-4 {
+  margin-right: 1.33rem;
+}
+
+.mt-4 {
+  margin-top: 1.33rem;
+}
+
+.mb-4 {
+  margin-bottom: 1.33rem;
+}
+
+.p-4 {
+  padding: 1.33rem;
+}
+
+.px-4 {
+  padding-left: 1.33rem;
+  padding-right: 1.33rem;
+}
+
+.py-4 {
+  padding-top: 1.33rem;
+  padding-bottom: 1.33rem;
+}
+
+.pl-4 {
+  padding-left: 1.33rem;
+}
+
+.pr-4 {
+  padding-right: 1.33rem;
+}
+
+.pt-4 {
+  padding-top: 1.33rem;
+}
+
+.pb-4 {
+  padding-bottom: 1.33rem;
+}
+
+.m-5 {
+  margin: 1.5rem;
+}
+
+.mx-5 {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.my-5 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.ml-5 {
+  margin-left: 1.5rem;
+}
+
+.mr-5 {
+  margin-right: 1.5rem;
+}
+
+.mt-5 {
+  margin-top: 1.5rem;
+}
+
+.mb-5 {
+  margin-bottom: 1.5rem;
+}
+
+.p-5 {
+  padding: 1.5rem;
+}
+
+.px-5 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.py-5 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.pl-5 {
+  padding-left: 1.5rem;
+}
+
+.pr-5 {
+  padding-right: 1.5rem;
+}
+
+.pt-5 {
+  padding-top: 1.5rem;
+}
+
+.pb-5 {
+  padding-bottom: 1.5rem;
+}
+
+.m-6 {
+  margin: 2rem;
+}
+
+.mx-6 {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.my-6 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.ml-6 {
+  margin-left: 2rem;
+}
+
+.mr-6 {
+  margin-right: 2rem;
+}
+
+.mt-6 {
+  margin-top: 2rem;
+}
+
+.mb-6 {
+  margin-bottom: 2rem;
+}
+
+.p-6 {
+  padding: 2rem;
+}
+
+.px-6 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.py-6 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.pl-6 {
+  padding-left: 2rem;
+}
+
+.pr-6 {
+  padding-right: 2rem;
+}
+
+.pt-6 {
+  padding-top: 2rem;
+}
+
+.pb-6 {
+  padding-bottom: 2rem;
+}
+
+.m-7 {
+  margin: 3rem;
+}
+
+.mx-7 {
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+.my-7 {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.ml-7 {
+  margin-left: 3rem;
+}
+
+.mr-7 {
+  margin-right: 3rem;
+}
+
+.mt-7 {
+  margin-top: 3rem;
+}
+
+.mb-7 {
+  margin-bottom: 3rem;
+}
+
+.p-7 {
+  padding: 3rem;
+}
+
+.px-7 {
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.py-7 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.pl-7 {
+  padding-left: 3rem;
+}
+
+.pr-7 {
+  padding-right: 3rem;
+}
+
+.pt-7 {
+  padding-top: 3rem;
+}
+
+.pb-7 {
+  padding-bottom: 3rem;
+}
+
+.m-8 {
+  margin: 4rem;
+}
+
+.mx-8 {
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+
+.my-8 {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.ml-8 {
+  margin-left: 4rem;
+}
+
+.mr-8 {
+  margin-right: 4rem;
+}
+
+.mt-8 {
+  margin-top: 4rem;
+}
+
+.mb-8 {
+  margin-bottom: 4rem;
+}
+
+.p-8 {
+  padding: 4rem;
+}
+
+.px-8 {
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+.py-8 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.pl-8 {
+  padding-left: 4rem;
+}
+
+.pr-8 {
+  padding-right: 4rem;
+}
+
+.pt-8 {
+  padding-top: 4rem;
+}
+
+.pb-8 {
+  padding-bottom: 4rem;
+}
+
+.shadow-lg {
+  box-shadow: 0 25px 70px 0 color-mix(in srgb, #ea7793 50%, rgba(0, 0, 0, 0.2) 50%);
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.text-lg {
+  font-size: var(--spacer-5);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+.z-20 {
+  z-index: 20;
+}
+
+.z-30 {
+  z-index: 30;
+}
+
+.z-40 {
+  z-index: 40;
+}
+
+.z-50 {
+  z-index: 50;
+}
+
+.radius-1 {
+  border-radius: 0.25rem;
+}
+
+.radius-2 {
+  border-radius: 0.5rem;
+}
+
+.radius-3 {
+  border-radius: 1rem;
+}
+
+.radius-4 {
+  border-radius: 1.33rem;
+}
+
+.radius-5 {
+  border-radius: 1.5rem;
+}
+
+.radius-6 {
+  border-radius: 2rem;
+}
+
+.radius-7 {
+  border-radius: 3rem;
+}
+
+.radius-8 {
+  border-radius: 4rem;
+}
+
+.radius-50 {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.muted {
+  opacity: 50%;
+}
+
+.button-group {
+  display: inline-flex;
+  border: 1px solid #cfd4e7;
+  border-radius: 0.5rem;
+  background-color: #fefefe;
+}
+.button-group .button:first-child {
+  border-right: 1px solid #cfd4e7;
+}
+
+.button {
+  background-color: transparent;
+  border-width: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.blackout {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  opacity: 75%;
+  background-color: #ea7793;
+}
+
+.no-select {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.slide-down {
+  animation-duration: 0.6s;
+  animation-name: slideDown;
+  animation-iteration-count: 1;
+  transition-timing-function: ease;
+}
+
+.slide-up {
+  animation-duration: 0.6s;
+  animation-name: slideDown;
+  animation-direction: reverse;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  transition-timing-function: ease;
+}
+
+@keyframes slideDown {
+  from {
+    margin-top: -7rem;
+    opacity: 0;
+  }
+  35% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0 inherit;
+  }
+}
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  font-family: "Inter", "Noto Color Emoji", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background: #ea7793;
+}
+
+h1 {
+  font-weight: 700;
+}
+
+a {
+  text-decoration: none;
+}
+
+.logo {
+  font-size: 3rem;
+  animation-duration: 0.8s;
+  animation-name: logoanim;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+}
+
+.artboard {
+  background: #fefefe;
+  max-width: 768px;
+}
+
+.friend {
+  height: 7rem;
+  background-color: #fefefe;
+}
+.friend:hover {
+  background-color: #f2f2fb;
+}
+.friend .avatar {
+  width: 80px;
+}
+
+#clear-list {
+  color: #d74467;
+}
+#clear-list:hover {
+  color: color-mix(in srgb, #d74467 50%, #500);
+}
+#clear-list:before {
+  content: attr(data-before);
+}
+
+@keyframes logoanim {
+  from {
+    rotate: -25deg;
+  }
+  to {
+    rotate: 25deg;
+  }
+}/*# sourceMappingURL=style.css.map */

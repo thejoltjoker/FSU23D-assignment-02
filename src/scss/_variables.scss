@@ -1,0 +1,54 @@
+/* Variables */
+$base-size: 1rem;
+$levels: (
+    "1": 0.25,
+    "2": 0.5,
+    "3": 1,
+    "4": 1.33,
+    "5": 1.5,
+    "6": 2,
+    "7": 3,
+    "8": 4,
+);
+
+// Animation
+$animation-duration: .6s;
+$transition-duration: .3s;
+
+/* Fonts */
+$font-family: "Inter", "Noto Color Emoji", system-ui, -apple-system, "Segoe UI",
+  Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif,
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-size-base: $base-size;
+$button-radius: $base-size*map-get($levels, "2");
+
+/* Colors */
+$colors:(
+    "pink-1": #fbe6ec,
+    "pink-2": #f6c4d1,
+    "pink-3": #f4b7c6,
+    "pink-4": #f095ab,
+    "pink-5": #ea7793,
+    "gray-1": #f2f2fb,
+    "gray-2": #e9e9f1,
+    "gray-3": #cfd4e7,
+    "gray-4": #545477,
+    "gray-5": #101041,
+    "red": #d74467,
+    "white": #fefefe
+);
+
+// Padding & margin
+$spacer: 1rem;
+
+// Sizes
+$size-avatar: 80px;
+
+// Breakpoints
+$breakpoints: (
+  "xs": 0,
+  "sm": 576px,
+  "md": 768px,
+  "lg": 992px,
+  "xl": 1200px,
+);

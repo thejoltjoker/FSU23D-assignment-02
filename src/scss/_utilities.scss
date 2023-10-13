@@ -1,0 +1,213 @@
+@use "variables" as *;
+
+.transition{
+  transition: all $transition-duration ease;
+}
+
+.container {
+  width: 100%;
+}
+
+.flex {
+  display: flex;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.shrink {
+  flex-shrink: 1;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.justify-center {
+  justify-content: center;
+}
+.items-center {
+  align-items: center;
+}
+.justify-self-end{
+  justify-self: end;
+}
+
+/* Margin & Padding */
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+@each $level, $i in $levels {
+  .m-#{$level} {
+    margin: $base-size*$i;
+  }
+  .mx-#{$level} {
+    margin-left: $base-size*$i;
+    margin-right: $base-size*$i;
+  }
+  .my-#{$level} {
+    margin-top: $base-size*$i;
+    margin-bottom: $base-size*$i;
+  }
+  .ml-#{$level} {
+    margin-left: $base-size*$i;
+  }
+  .mr-#{$level} {
+    margin-right: $base-size*$i;
+  }
+  .mt-#{$level} {
+    margin-top: $base-size*$i;
+  }
+  .mb-#{$level} {
+    margin-bottom: $base-size*$i;
+  }
+  .p-#{$level} {
+    padding: $base-size*$i;
+  }
+  .px-#{$level} {
+    padding-left: $base-size*$i;
+    padding-right: $base-size*$i;
+  }
+  .py-#{$level} {
+    padding-top: $base-size*$i;
+    padding-bottom: $base-size*$i;
+  }
+  .pl-#{$level} {
+    padding-left: $base-size*$i;
+  }
+  .pr-#{$level} {
+    padding-right: $base-size*$i;
+  }
+  .pt-#{$level} {
+    padding-top: $base-size*$i;
+  }
+  .pb-#{$level} {
+    padding-bottom: $base-size*$i;
+  }
+}
+
+// Shadow
+.shadow-lg {
+  box-shadow: 0 25px 70px 0
+    color-mix(in srgb, map-get($colors, "pink-5") 50%, rgba(0, 0, 0, 0.2) 50%);
+}
+
+// Font
+.font-bold{
+  font-weight: 700;
+}
+// Text
+.text-lg {
+  font-size: var(--spacer-5);
+}
+
+.text-center {
+  text-align: center;
+}
+
+// Position
+.relative{
+  position: relative;
+}
+
+.absolute{
+  position: absolute;
+}
+
+//Z-index
+@for $i from 1 through 5 {
+  .z-#{$i*10} {
+    z-index: $i*10;
+  }
+}
+
+// Border radius
+@each $level, $i in $levels {
+  .radius-#{$level} {
+    border-radius: $base-size*$i;
+  }
+}
+.radius-50 {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.muted {
+  opacity: 50%;
+}
+
+
+.button-group{
+  display: inline-flex;
+  border: 1px solid map-get($colors, "gray-3");
+  border-radius: $button-radius;
+  background-color: map-get($colors, "white");
+  .button{
+    
+    &:first-child{
+      border-right: 1px solid map-get($colors, "gray-3");
+    }
+  }
+  
+}
+
+.button{
+  background-color: transparent;
+  border-width: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  padding: $base-size*map-get($levels, "3");
+  cursor: pointer;
+}
+
+.blackout{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  opacity: 75%;
+  background-color: map-get($colors, "pink-5");
+}
+
+.no-select {
+  user-select: none;
+}
+
+.slide-down{
+  animation-duration: $animation-duration;
+  animation-name: slideDown;
+  animation-iteration-count: 1;
+  transition-timing-function: ease;
+}
+.slide-up{
+  animation-duration: $animation-duration;
+  animation-name: slideDown;
+  animation-direction: reverse;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  transition-timing-function: ease;
+}
+@keyframes slideDown {
+  from {
+    margin-top: -7rem;
+    opacity: 0;
+  }
+  35%{
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0 inherit;
+  }
+}

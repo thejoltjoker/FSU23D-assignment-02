@@ -1,0 +1,120 @@
+@use "sass:map";
+@use "sass:meta";
+@use "variables" as *;
+@use "utilities";
+
+// $vars: meta.module-variables("variables");
+
+// Functions
+// @function css-var($name) {
+//   $fallback: map.get($vars, $name);
+//   @return var(--#{$name}, $fallback);
+// }
+
+// Variables
+// :root {
+//   @each $name, $value in $vars {
+//     --#{$name}: #{$value};
+//   }
+// }
+
+// Reset
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// Custom styles
+body {
+  font-family: $font-family;
+  background: map-get($colors, "pink-5");
+}
+
+h1 {
+  font-weight: 700;
+}
+
+a {
+  text-decoration: none;
+}
+
+.logo {
+  font-size: $font-size-base * 3;
+  animation-duration: 0.8s;
+  animation-name: logoanim;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+}
+
+.artboard {
+  background: map-get($colors, "white");
+  max-width: map-get($breakpoints, "md");
+}
+
+.friend {
+  height: 7rem;
+  background-color: map-get($colors, "white");
+  &:hover {
+    background-color: map-get($colors, "gray-1");
+  }
+  .avatar {
+    width: $size-avatar;
+  }
+}
+
+#clear-list {
+  color: map-get($colors, "red");
+  &:hover{
+    color: color-mix(in srgb, map-get($colors, "red") 50%, #500);
+  }
+  &:before {
+    content: attr(data-before);
+  }
+}
+
+@keyframes logoanim {
+  from {
+    rotate: -25deg;
+  }
+
+  to {
+    rotate: 25deg;
+  }
+}
+
