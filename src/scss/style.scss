@@ -75,6 +75,10 @@ a {
   text-decoration: none;
 }
 
+::selection {
+  background: map-get($colors, "pink-2");
+}
+
 .logo {
   font-size: $font-size-base * 3;
   animation-duration: 0.8s;
@@ -95,8 +99,60 @@ a {
   &:hover {
     background-color: map-get($colors, "gray-1");
   }
-  .avatar img {
-    max-width: calc($friend-list-item-height - $friend-list-item-padding * 2);
+
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="tel"],
+  textarea {
+    box-sizing: border-box;
+    border: none;
+    padding: 0;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: map-get($colors, "pink-4");
+    box-shadow: none;
+    margin: 0;
+    // background: map-get($colors, "gray-2");
+    color: map-get($colors, "red");
+    &:hover {
+      cursor: text;
+    }
+    &:disabled {
+      border: none;
+      text-decoration: dashed;
+      color: map-get($colors, "gray-5");
+      // background: none;
+    }
+    &:focus {
+      box-shadow: none;
+      @include flashing($animation-duration * 2);
+    }
+  }
+
+  .avatar {
+    width: calc($friend-list-item-height - $friend-list-item-padding * 2);
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: map-get($colors, "gray-1");
+    box-shadow: 0 0 0 2px map-get($colors, "pink-3") inset,
+      0 0 0 4px map-get($colors, "white") inset,
+      0 0 0 6px map-get($colors, "gray-3") inset;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: calc($friend-list-item-height - $friend-list-item-padding * 4);
+
+    & text {
+      font-family: $font-family;
+    }
+    & svg {
+      width: 100%;
+    }
+    & img {
+      max-width: calc($friend-list-item-height - $friend-list-item-padding * 2);
+    }
   }
 }
 
@@ -125,8 +181,6 @@ a {
   animation-fill-mode: forwards;
   transition-timing-function: ease;
 }
-
-
 
 @keyframes logoanim {
   from {

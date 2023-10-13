@@ -227,6 +227,10 @@ textarea {
     border: 1px solid map-get($colors, "pink-5");
     outline: none;
   }
+
+  &::placeholder {
+    color: map-get($colors, "gray-3");
+  }
 }
 
 .blackout {
@@ -287,5 +291,18 @@ textarea {
 
   to {
     opacity: 1;
+  }
+}
+
+.slow-flashing {
+  @include flashing($animation-duration*2);
+}
+
+@keyframes flashing {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.5;
   }
 }

@@ -817,6 +817,16 @@ textarea:focus {
   border: 1px solid #ea7793;
   outline: none;
 }
+input[type=text]::-moz-placeholder, input[type=number]::-moz-placeholder, input[type=email]::-moz-placeholder, input[type=tel]::-moz-placeholder, textarea::-moz-placeholder {
+  color: #cfd4e7;
+}
+input[type=text]::placeholder,
+input[type=number]::placeholder,
+input[type=email]::placeholder,
+input[type=tel]::placeholder,
+textarea::placeholder {
+  color: #cfd4e7;
+}
 
 .blackout {
   position: fixed;
@@ -884,6 +894,22 @@ textarea:focus {
     opacity: 1;
   }
 }
+.slow-flashing {
+  animation-duration: 1s;
+  animation-name: flashing;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+
+@keyframes flashing {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
 html {
   box-sizing: border-box;
   font-size: 16px;
@@ -938,6 +964,14 @@ a {
   text-decoration: none;
 }
 
+::-moz-selection {
+  background: #f6c4d1;
+}
+
+::selection {
+  background: #f6c4d1;
+}
+
 .logo {
   font-size: 3rem;
   animation-duration: 0.8s;
@@ -957,6 +991,68 @@ a {
 }
 .friend:hover {
   background-color: #f2f2fb;
+}
+.friend input[type=text],
+.friend input[type=number],
+.friend input[type=email],
+.friend input[type=tel],
+.friend textarea {
+  box-sizing: border-box;
+  border: none;
+  padding: 0;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: #f095ab;
+  box-shadow: none;
+  margin: 0;
+  color: #d74467;
+}
+.friend input[type=text]:hover,
+.friend input[type=number]:hover,
+.friend input[type=email]:hover,
+.friend input[type=tel]:hover,
+.friend textarea:hover {
+  cursor: text;
+}
+.friend input[type=text]:disabled,
+.friend input[type=number]:disabled,
+.friend input[type=email]:disabled,
+.friend input[type=tel]:disabled,
+.friend textarea:disabled {
+  border: none;
+  -webkit-text-decoration: dashed;
+          text-decoration: dashed;
+  color: #101041;
+}
+.friend input[type=text]:focus,
+.friend input[type=number]:focus,
+.friend input[type=email]:focus,
+.friend input[type=tel]:focus,
+.friend textarea:focus {
+  box-shadow: none;
+  animation-duration: 1s;
+  animation-name: flashing;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+.friend .avatar {
+  width: 5rem;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  background: #f2f2fb;
+  box-shadow: 0 0 0 2px #f4b7c6 inset, 0 0 0 4px #fefefe inset, 0 0 0 6px #cfd4e7 inset;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+.friend .avatar text {
+  font-family: "Inter", "Noto Color Emoji", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+.friend .avatar svg {
+  width: 100%;
 }
 .friend .avatar img {
   max-width: 5rem;

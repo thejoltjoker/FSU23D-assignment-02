@@ -1,4 +1,5 @@
 import { randomEmoji } from "./emoji.js";
+import { cleanNumber } from "./utility.js";
 
 /**
  * Retrieves the list of friends from local storage.
@@ -32,6 +33,9 @@ export const insertFriend = (name, number, emoji) => {
   // Use random emoji if not given
   // emoji = emoji || randomEmoji();
 
+  // Clean phone number
+  number = cleanNumber(number);
+
   // Add the new friend to friends object
   let friend = { id: id, name: name, number: number, emoji: emoji };
   friends.push(friend);
@@ -55,7 +59,12 @@ export const updateFriend = (id, name, number, emoji) => {
   let friends = getFriends();
 
   // Add the new friend to friends object
-  let friend = { id: id, name: name, number: number, emoji: emoji };
+  let friend = {
+    id: id,
+    name: name,
+    number: cleanNumber(number),
+    emoji: emoji,
+  };
 
   const index = friends.findIndex((friend) => friend.id == id);
 

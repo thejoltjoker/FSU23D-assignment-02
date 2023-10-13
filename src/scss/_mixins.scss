@@ -5,10 +5,18 @@
   background: rgba($color, $opacity);
 }
 
-@mixin padding($level){
+@mixin padding($level) {
   padding: $base-size * map-get($levels, $level);
 }
 
-@mixin border-radius($level){
+@mixin border-radius($level) {
   border-radius: $base-size * map-get($levels, $level);
+}
+
+@mixin flashing($speed) {
+  animation-duration: $speed;
+  animation-name: flashing;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
 }

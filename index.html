@@ -1,80 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+  <!-- TODO add shakey shakey to buttons on hover 
+  TODO add falling hearts background
+  TODO add edit functionality
+  TODO add padding to add friend link
+  TODO add waving hand animation to add friend modal
+  TODO switch from photos to emojis
+-->
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Friends 4 Ever</title>
-  <link rel="stylesheet" href="./css/style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👋</text></svg>" />
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Friends 4 Ever</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👋</text></svg>"
+    />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Color+Emoji&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
-  <div class="container pt-7">
-    <div class="artboard flex flex-col radius-4 shadow-lg mx-auto p-3">
-      <div class="logo text-center text-lg mt-6 pb-6 no-select">🦄</div>
-      <h1 class="text-center mb-6">✨ Friends 4 Ever ✨</h1>
-      <a href="" id="add-friend">🤗 Add friend</a>
-      <div id="friends-list" class="flex flex-col transition">
-        <!-- TODO Remove this, only for testing
-          <div class="friend inline-flex items-center p-3 radius-3 transition">
-          <div class="avatar flex">
-            <img src="https://thispersondoesnotexist.com/" alt="Avatar" class="radius-50" />
-          </div>
-          <div class="meta flex flex-col ml-3 grow">
-            <h2 class="name mb-2">John Doe</h2>
-            <h3 class="number muted">072-703 04 05</h3>
-          </div>
-          <div class="button-group justify-self-end">
-            <button class="button" id="edit-friend-#">✏️</button>
-            <button class="button" id="drop-friend-#">🗑️</button>
-          </div>
-        </div> -->
-      </div>
-      <div class="text-center font-bold mt-3">
-        <a href="" id="clear-list" data-before="😭 " class="transition">Clear list</a>
-      </div>
-    </div>
-  </div>
-  <!-- Modal -->
-  <!-- TODO add warning if wrong input -->
-  <div class="modal-container flex transition">
-    <div class="modal-content flex m-auto">
+  <body>
+    <div class="container pt-7">
       <div class="artboard flex flex-col radius-4 shadow-lg mx-auto p-3">
-        <div class="text-center font-size-7 mt-6 pb-6 no-select">👋</div>
-        <h2 class="text-center mb-6 font-bold">✨ New friend, yay ✨</h2>
-        <div>
-          <form id="friend-form" method="post" class="flex flex-col">
-            <div class="mb-2 font-bold color-gray-4">
-              <label for="name">Name</label>
+        <div class="logo text-center text-lg mt-6 pb-6 no-select">🦄</div>
+        <h1 class="text-center mb-6">✨ Friends 4 Ever ✨</h1>
+        <a
+          href=""
+          id="add-friend"
+          class="font-size-4 color-gray-4 font-bold p-3"
+          >🤗 Add friend</a
+        >
+        <div id="friends-list" class="flex flex-col transition">
+          <!-- TODO Remove this, only for testing -->
+          <div class="friend inline-flex items-center p-3 radius-3 transition">
+            <div class="avatar no-select">😅</div>
+            <div class="meta flex flex-col ml-3 grow">
+              <h2 class="name mb-2">
+                <input
+                  type="text"
+                  name="name-#"
+                  id="friend-#-name-input"
+                  value="John Doe"
+                />
+              </h2>
+              <h3 class="number muted">072-703 04 05</h3>
             </div>
-            <div class="mb-4 font-size-5">
-              <input type="text" name="name" id="input-name" class="transition" />
+            <div class="button-group justify-self-end">
+              <button class="button" id="edit-friend-#">✏️</button>
+              <button class="button" id="drop-friend-#">🗑️</button>
             </div>
-
-            <div class="mb-2 font-bold color-gray-4">
-              <label for="number">Number</label>
-            </div>
-            <div class="mb-4 font-size-5">
-              <input type="tel" name="number" id="input-number" class="transition" />
-            </div>
-            <div id="friend-form-message" class="display-none">
-            </div>
-            <button type="submit" id="save-button" class="button bg-cyan">
-              😻 Save 😻
-            </button>
-          </form>
+          </div>
+        </div>
+        <div class="text-center font-bold mt-3">
+          <a href="" id="clear-list" class="transition" data-before="😭 "
+            >Clear list</a
+          >
         </div>
       </div>
     </div>
-  </div>
-  <!-- <div class="blackout transition"></div> -->
+    <!-- Modal -->
+    <!-- TODO add warning if wrong input -->
+    <div class="modal-container flex transition">
+      <div class="modal-content flex m-auto">
+        <div class="artboard flex flex-col radius-4 shadow-lg mx-auto p-3">
+          <div class="text-center font-size-7 mt-6 pb-6 no-select">👋</div>
+          <h2 class="text-center mb-6 font-bold">✨ New friend, yay ✨</h2>
+          <div>
+            <form id="friend-form" method="post" class="flex flex-col">
+              <div class="mb-2 font-bold color-gray-4">
+                <label for="name">Name</label>
+              </div>
+              <div class="mb-4 font-size-5">
+                <input
+                  type="text"
+                  name="name"
+                  id="input-name"
+                  class="transition"
+                />
+              </div>
 
-  <script src="./js/main.js" type="module"></script>
-</body>
+              <div class="mb-2 font-bold color-gray-4">
+                <label for="number">Number</label>
+              </div>
+              <div class="mb-4 font-size-5">
+                <input
+                  type="tel"
+                  name="number"
+                  id="input-number"
+                  class="transition"
+                />
+              </div>
+              <div id="friend-form-message" class="display-none"></div>
+              <button type="submit" id="save-button" class="button bg-cyan">
+                😻 Save 😻
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="blackout transition"></div> -->
 
+    <script src="./js/main.js" type="module"></script>
+  </body>
 </html>

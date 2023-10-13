@@ -5,6 +5,10 @@ export const isPhoneNumber = (value) => {
   return re.exec(value) ? true : false;
 };
 
+export const randomInArray = (arr) => {
+  return arr[Math.floor(Math.random() * arr.length)];
+};
+
 export const randomPhoneNumber = () => {
   let number = "";
   while (number.length < 10) {
@@ -17,7 +21,8 @@ export const cleanNumber = (value) => {
   // Remove all non-digit characters from the number
   let cleaned = "";
   for (let i of value) {
-    if (!isNaN(i)) {
+    console.log(!isNaN(parseInt(i)));
+    if (!isNaN(parseInt(i))) {
       cleaned += i;
     }
   }
