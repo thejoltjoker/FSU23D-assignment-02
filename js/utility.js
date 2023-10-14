@@ -21,7 +21,6 @@ export const cleanNumber = (value) => {
   // Remove all non-digit characters from the number
   let cleaned = "";
   for (let i of value) {
-    console.log(!isNaN(parseInt(i)));
     if (!isNaN(parseInt(i))) {
       cleaned += i;
     }

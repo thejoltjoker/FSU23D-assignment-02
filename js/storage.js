@@ -16,6 +16,16 @@ export const getFriends = () => {
   return [];
 };
 
+export const getFriend = (id) => {
+  // Get existing friends
+  let friends = getFriends();
+
+  const index = friends.findIndex((friend) => friend.id == id);
+
+  // Return friend if found else null
+  return index ? friends[index] : null;
+};
+
 /**
  * Adds a new friend to the list and stores it in local storage.
  * @param {string} name - The name of the friend.
@@ -30,8 +40,8 @@ export const insertFriend = (name, number, emoji) => {
   // Use timestamp as ID to avoid collision
   let id = Date.now().toString();
 
-  // Use random emoji if not given
-  // emoji = emoji || randomEmoji();
+  // Use default emoji if not given
+  emoji = emoji || "👤";
 
   // Clean phone number
   number = cleanNumber(number);

@@ -155,7 +155,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: calc($friend-list-item-height - $friend-list-item-padding * 4);
+    font-size: calc($friend-list-item-height - $friend-list-item-padding * 5);
 
     & text {
       font-family: $font-family;

@@ -147,4 +147,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
       closeModal();
     }
   });
+
+  // Testing stuff
+  const testArea = document.querySelector("#test-area");
+  let friend = new display.Friend(123, "John Doe", "12345678", "🤡", testArea);
+  friend.create();
 });
