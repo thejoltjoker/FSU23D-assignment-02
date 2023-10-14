@@ -989,7 +989,7 @@ textarea {
   background-color: transparent;
   border-width: 0;
   border-radius: 0.5rem;
-  cursor: pointer;
+  cursor: text;
   border: 1px solid #cfd4e7;
   padding: 0.5rem;
 }
@@ -1304,6 +1304,25 @@ a {
 }
 .friend .avatar img {
   max-width: 5rem;
+}
+
+#friend-form #friend-form-name {
+  position: relative;
+}
+#friend-form #friend-form-name .emoji {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.5rem;
+  font-size: inherit;
+  line-height: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#friend-form #friend-form-name .emoji:hover {
+  cursor: pointer;
 }
 
 #clear-list {

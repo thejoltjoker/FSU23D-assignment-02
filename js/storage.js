@@ -40,6 +40,7 @@ export const insertFriend = (name, number, emoji) => {
   let id = Date.now().toString();
 
   // Use default emoji if not given
+  console.log(emoji);
   emoji = emoji || "👤";
 
   // Clean phone number

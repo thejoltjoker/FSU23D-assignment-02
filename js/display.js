@@ -64,7 +64,7 @@ export const EmojiPicker = class {
       "div",
       {
         id: "emoji-picker",
-        className: ["artboard", "p-4", "m-2", "shadow-sm"],
+        className: ["artboard", "p-4", "m-2", "shadow-sm", "z-50"],
       },
       document.querySelector("body")
     );
@@ -144,6 +144,8 @@ export const Friend = class {
     this.numberField.value = formatPhoneNumber(
       cleanNumber(this.numberField.value)
     );
+
+    this.avatarDiv.onclick = null;
 
     this.#resetButtons();
   };

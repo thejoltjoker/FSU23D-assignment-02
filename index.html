@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <!-- 
-    TODO Emoji picker
   TODO add falling hearts background
   TODO add waving hand animation to add friend modal
   TODO spin emojis on edit button click
@@ -37,25 +36,7 @@
           >🤗 Add friend</a
         >
         <div id="friends-list" class="flex flex-col transition">
-          <!-- TODO Remove this, only for testing
-          <div class="friend inline-flex items-center p-3 radius-3 transition">
-            <div class="avatar no-select">😅</div>
-            <div class="meta flex flex-col ml-3 grow">
-              <h2 class="name mb-2">
-                <input
-                  type="text"
-                  name="name-#"
-                  id="friend-#-name-input"
-                  value="John Doe"
-                />
-              </h2>
-              <h3 class="number muted">072-703 04 05</h3>
-            </div>
-            <div class="button-group justify-self-end">
-              <button class="button" id="edit-friend-#">✏️</button>
-              <button class="button" id="drop-friend-#">🗑️</button>
-            </div>
-          </div> -->
+          <!-- Friends go here 🤗 -->
         </div>
         <div class="text-center font-bold mt-3">
           <a href="" id="clear-list" class="transition" data-before="😭 "
@@ -66,7 +47,7 @@
     </div>
     <!-- Modal -->
     <!-- TODO Style warning if wrong input -->
-    <div class="modal-container flex transition">
+    <div class="modal-container flex transition display-none">
       <div class="modal-content flex m-auto">
         <div class="artboard flex flex-col radius-4 shadow-lg mx-auto p-3">
           <div class="text-center font-size-7 mt-6 pb-6 no-select">👋</div>
@@ -76,7 +57,8 @@
               <div class="mb-2 font-bold color-gray-4">
                 <label for="name">Name</label>
               </div>
-              <div class="mb-4 font-size-5">
+              <div id="friend-form-name" class="mb-4 font-size-5">
+                <div class="emoji z-30">👤</div>
                 <input
                   type="text"
                   name="name"

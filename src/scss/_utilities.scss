@@ -248,7 +248,7 @@ textarea {
   background-color: transparent;
   border-width: 0;
   border-radius: $button-radius;
-  cursor: pointer;
+  cursor: text;
   border: 1px solid map-get($colors, "gray-3");
   @include padding(2);
   &:focus {

@@ -4,21 +4,6 @@
 @use "mixins" as *;
 @use "utilities";
 
-// $vars: meta.module-variables("variables");
-
-// Functions
-// @function css-var($name) {
-//   $fallback: map.get($vars, $name);
-//   @return var(--#{$name}, $fallback);
-// }
-
-// Variables
-// :root {
-//   @each $name, $value in $vars {
-//     --#{$name}: #{$value};
-//   }
-// }
-
 // Reset
 html {
   box-sizing: border-box;
@@ -176,6 +161,27 @@ a {
     }
     & img {
       max-width: calc($friend-list-item-height - $friend-list-item-padding * 2);
+    }
+  }
+}
+
+#friend-form {
+  #friend-form-name {
+    position: relative;
+    .emoji {
+      position: absolute;
+      top: 0;
+      right: 0;
+      @include padding(2);
+      font-size: inherit;
+      line-height: 1;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }
