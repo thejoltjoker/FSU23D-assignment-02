@@ -181,8 +181,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Testing stuff
-  showModal();
-  
+  // showModal();
+
   // const testArea = document.querySelector("#test-area");
   // const emojiPicker = new display.EmojiPicker(testArea);
 });

@@ -60,11 +60,20 @@ export const EmojiPicker = class {
 
   show = () => {
     // Create ui elements
+    // <div class="modal-container flex transition display-none">
+    //   <div class="modal-content flex m-auto">
     this.pickerDiv = createElem(
       "div",
       {
         id: "emoji-picker",
-        className: ["artboard", "p-4", "m-2", "shadow-sm", "z-50"],
+        className: [
+          "artboard",
+          "p-4",
+          "m-2",
+          "shadow-sm",
+          "z-50",
+          "max-width-lg",
+        ],
       },
       document.querySelector("body")
     );
@@ -85,6 +94,17 @@ export const EmojiPicker = class {
         this.pick(selectedEmoji);
       };
     });
+
+    // Move to center
+    console.log(this.pickerDiv.style.margin);
+    this.pickerDiv.style.left = (() => {
+      let margin = (window.innerWidth - this.pickerDiv.offsetWidth) / 2;
+      margin -= parseInt(window.getComputedStyle(this.pickerDiv).margin);
+      return `${margin}px`;
+    })();
+    // () => {
+
+    // };
   };
 
   pick = (emoji) => {

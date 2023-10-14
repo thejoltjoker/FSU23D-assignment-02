@@ -237,9 +237,7 @@ a {
   top: 0;
   left: 0;
   width: calc(100% - map-get($levels, 3) * $base-size);
-  max-height: auto;
-  overflow-y: auto;
-  font-size: calc(map-get($levels, 4) * $base-size + 2vw);
+  font-size: calc(map-get($levels, 5) * $base-size + 1vw);
   ul {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
@@ -248,9 +246,6 @@ a {
     }
     @media screen and (min-width: map-get($breakpoints, "md")) {
       grid-template-columns: repeat(12, 1fr);
-    }
-    @media screen and (min-width: map-get($breakpoints, "lg")) {
-      grid-template-columns: repeat(16, 1fr);
     }
     li {
       cursor: pointer;

@@ -3854,9 +3854,7 @@ a {
   top: 0;
   left: 0;
   width: calc(100% - 1rem);
-  max-height: auto;
-  overflow-y: auto;
-  font-size: calc(1.2rem + 2vw);
+  font-size: calc(1.33rem + 1vw);
 }
 #emoji-picker ul {
   display: grid;
@@ -3870,11 +3868,6 @@ a {
 @media screen and (min-width: 768px) {
   #emoji-picker ul {
     grid-template-columns: repeat(12, 1fr);
-  }
-}
-@media screen and (min-width: 992px) {
-  #emoji-picker ul {
-    grid-template-columns: repeat(16, 1fr);
   }
 }
 #emoji-picker ul li {
