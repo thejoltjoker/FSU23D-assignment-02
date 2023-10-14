@@ -1,5 +1,5 @@
 <p align="center" style="font-size:4rem;">
-  👋
+  <img src="./img/waving-hand.png" align="center" style="max-width:100px;">
 </p>  
 <h1 align="center">
   <b>Friends 4 Ever</b>
