@@ -1,19 +1,12 @@
 import * as storage from "./storage.js";
-import { cleanNumber, formatPhoneNumber } from "./utility.js";
-
-let currentlyEditing;
+import {
+  cleanNumber,
+  formatPhoneNumber,
+  getCursorPos,
+  isPhoneNumber,
+} from "./utility.js";
+import { emojis } from "./emoji.js";
 const animationDuration = 500;
-
-const deleteFriend = (id) => {
-  const friendDiv = document.querySelector(`#friend-${id}`);
-  console.log(friendDiv);
-  friendDiv.classList.add("slide-up");
-
-  storage.dropFriend(id);
-  setTimeout(() => {
-    friendDiv.remove();
-  }, 600);
-};
 
 /**
  *
@@ -21,7 +14,7 @@ const deleteFriend = (id) => {
  * @param {object} attributes
  * @return {element}
  */
-const createElem = (element = "div", attributes, parent = null) => {
+export const createElem = (element = "div", attributes, parent = null) => {
   const elem = document.createElement(element);
   for (let [attr, value] of Object.entries(attributes)) {
     if (Array.isArray(value)) {
@@ -36,41 +29,16 @@ const createElem = (element = "div", attributes, parent = null) => {
   return elem;
 };
 
-const createButton = (friendId, divId, emoji, onClick) => {
-  const buttonElem = document.createElement("button");
-  buttonElem.classList.add("button");
-  buttonElem.id = divId;
-  buttonElem.setAttribute("data-friend-id", friendId);
-
-  const emojiElem = document.createElement("div");
-  buttonElem.appendChild(emojiElem);
-  emojiElem.className = "emoji";
-  emojiElem.textContent = emoji;
-
-  buttonElem.onclick = (e) => {
-    let id;
-    if (e.target.className == "emoji") {
-      id = e.target.parentElement.getAttribute("data-friend-id");
-    } else {
-      id = e.target.getAttribute("data-friend-id");
-    }
-    onClick(id);
-  };
-  return { buttonElem, emojiElem };
-};
-
 export const populateList = () => {
   // Get friends from storage
   const friends = storage.getFriends();
+  console.log(friends);
   const friendsList = document.querySelector("#friends-list");
   if (friends.length > 0) {
     // For each friend add to list
     friends.forEach((f) => {
       console.log(`Friend #${f.id} ${f.name}`);
-      console.log(...Object.values(f));
-      // showFriend(f);
       const friend = new Friend(...Object.values(f), friendsList);
-
       friend.create();
     });
   } else {
@@ -84,171 +52,118 @@ export const clearList = () => {
   friendsList.innerHTML = "";
 };
 
-/**
- * Edit a friend in the ui.
- *
- * @param {string} id The id of the friend.
- */
-export const editFriend = (id) => {
-  if (currentlyEditing) {
-    document.querySelector(`#name-input-${currentlyEditing}`).disabled = true;
-    document.querySelector(`#number-input-${currentlyEditing}`).disabled = true;
-    document.querySelector(
-      `#edit-friend-${currentlyEditing} .emoji`
-    ).textContent = "✏️";
+export const EmojiPicker = class {
+  constructor(callback) {
+    this.callback = callback;
+    this.show();
   }
 
-  // Keep track of what's currently being edited
-  currentlyEditing = id;
+  show = () => {
+    // Create ui elements
+    this.pickerDiv = createElem(
+      "div",
+      {
+        id: "emoji-picker",
+        className: ["artboard", "p-4", "m-2", "shadow-sm"],
+      },
+      document.querySelector("body")
+    );
+    const ul = createElem(
+      "ul",
+      { className: ["flex", "flex-wrap", "justify-between"] },
+      this.pickerDiv
+    );
 
-  console.log(`Editing friend #${id}`);
-
-  // Get elements
-  const nameInput = document.querySelector(`#name-input-${id}`);
-  const numberInput = document.querySelector(`#number-input-${id}`);
-  const editButton = document.querySelector(`#edit-friend-${id}`);
-  const editButtonEmoji = document.querySelector(`#edit-friend-${id} .emoji`);
-
-  // Enable fields
-  nameInput.disabled = false;
-  numberInput.disabled = false;
-  nameInput.focus();
-
-  // Change edit button emoji
-  editButtonEmoji.textContent = "✅";
-
-  editButton.onclick = (e) => {
-    storage.updateFriend(id, nameInput.value, numberInput.value);
-    editButtonEmoji.textContent = "✏️";
-    nameInput.disabled = true;
-    numberInput.disabled = true;
-    currentlyEditing = null;
-    // Restore button functionality
-    editButton.onclick = (e) => {
-      let id;
-      if (e.target.className == "emoji") {
-        id = e.target.parentElement.getAttribute("data-friend-id");
-      } else {
-        id = e.target.getAttribute("data-friend-id");
-      }
-      editFriend(id);
-    };
+    // Display emojis
+    emojis.forEach((emoji) => {
+      let elem = createElem(
+        "li",
+        { textContent: emoji, className: ["transition"] },
+        ul
+      );
+      elem.onclick = (e) => {
+        const selectedEmoji = e.target.textContent;
+        this.pick(selectedEmoji);
+      };
+    });
   };
-};
 
-export const showFriend = (friend, animate = false) => {
-  // TODO cleanup
-  // Deconstruct friend
-  const { id, name, number, emoji } = friend;
+  pick = (emoji) => {
+    this.close();
+    if (this.callback) {
+      this.callback(emoji);
+    }
+  };
 
-  // Create the main container div element
-  const friendDiv = document.createElement("div");
-  friendDiv.classList.add(
-    "friend",
-    "inline-flex",
-    "items-center",
-    "p-3",
-    "radius-3",
-    "transition"
-  );
-  if (animate) {
-    friendDiv.className += " slide-down";
-  }
-  friendDiv.id = `friend-${id}`;
-  // friendDiv.setAttribute("data-friend-id", id);
-
-  // Create the avatar div and add an image
-  const avatarDiv = document.createElement("div");
-  avatarDiv.classList.add("avatar", "no-select");
-  // TODO Add emoji
-  // const avatarImg = document.createElement("img");
-  // avatarImg.src = "https://thispersondoesnotexist.com/";
-  // avatarImg.alt = "Avatar";
-  // avatarImg.className = "radius-50";
-  // avatarDiv.appendChild(avatarImg);
-
-  // Create the meta div
-  const metaDiv = document.createElement("div");
-  metaDiv.classList.add("meta", "flex", "flex-col", "ml-3", "grow");
-
-  // Create input field for name
-  const nameHeading = document.createElement("h3");
-  nameHeading.classList.add("font-size-5", "mb-2");
-  const nameInput = document.createElement("input");
-  nameInput.classList.add("transition", "color-gray-5");
-  nameInput.disabled = true;
-  nameInput.type = "text";
-  nameInput.name = `name-${id}`;
-  nameInput.id = `name-input-${id}`;
-  nameInput.value = name;
-
-  const numberHeading = document.createElement("h4");
-  numberHeading.classList.add("font-size-4", "font-thin");
-  const numberInput = document.createElement("input");
-  numberInput.classList.add("transition", "color-gray-6");
-  numberInput.disabled = true;
-  numberInput.type = "text";
-  numberInput.name = `number-${id}`;
-  numberInput.id = `number-input-${id}`;
-  numberInput.value = formatPhoneNumber(number);
-
-  // Add elements
-  nameHeading.appendChild(nameInput);
-  numberHeading.appendChild(numberInput);
-  metaDiv.appendChild(nameHeading);
-  metaDiv.appendChild(numberHeading);
-
-  // Create the button group div and add buttons
-  const buttonGroupDiv = document.createElement("div");
-  buttonGroupDiv.classList.add("button-group", "justify-self-end");
-
-  const { buttonElem: editButton, emojiElem: editButtonEmoji } = createButton(
-    id,
-    `edit-friend-${id}`,
-    "✏️",
-    editFriend
-  );
-
-  const { buttonElem: dropButton, emojiElem: dropButtonEmoji } = createButton(
-    id,
-    `drop-friend-${id}`,
-    "🗑️",
-    deleteFriend
-  );
-
-  buttonGroupDiv.appendChild(editButton);
-  buttonGroupDiv.appendChild(dropButton);
-
-  // Append the elements to the main container
-  friendDiv.appendChild(avatarDiv);
-  friendDiv.appendChild(metaDiv);
-  friendDiv.appendChild(buttonGroupDiv);
-
-  // Add the entire friendDiv to the document body or any desired location
-  const friendsList = document.querySelector("#friends-list");
-
-  // Add friend
-  friendsList.appendChild(friendDiv);
-
-  // Remove animation class
-  setTimeout(() => {
-    friendDiv.classList.remove("slide-down");
-  }, 600);
+  close = () => {
+    this.pickerDiv.remove();
+  };
 };
 
 export const Friend = class {
   constructor(id, name, number, emoji, parent) {
-    let friend = storage.getFriend(id);
+    this.id = id || `${Date.now()}`;
+    this.name = name;
+    this.number = number;
+    this.emoji = emoji;
 
-    this.id = friend?.id ?? Date.now();
-    this.name = friend?.name ?? name;
-    this.number = friend?.number ?? number;
-    this.emoji = friend?.emoji ?? emoji;
     this.parent = parent;
 
     this.nameField;
     this.numberField;
   }
+  #enableEditing = () => {
+    // Enable fields
+    this.nameField.disabled = false;
+    this.numberField.disabled = false;
+
+    // Change hover background color
+    this.containerDiv.classList.add("friend-editable");
+
+    // Change edit button emoji
+    this.editButton.querySelector(".emoji").textContent = "✅";
+    this.dropButton.querySelector(".emoji").textContent = "❌";
+
+    // Add pink ring to avatar
+    this.avatarDiv.classList.add("avatar-editable");
+
+    // Set focus to name field
+    this.nameField.focus();
+  };
+  #disableEditing = () => {
+    // Disable fields
+    this.nameField.disabled = true;
+    this.numberField.disabled = true;
+
+    // Change hover background color
+    this.containerDiv.classList.remove("friend-editable");
+
+    // Add pink ring to avatar
+    this.avatarDiv.classList.remove("avatar-editable");
+
+    this.numberField.value = formatPhoneNumber(
+      cleanNumber(this.numberField.value)
+    );
+
+    this.#resetButtons();
+  };
+  #resetButtons = () => {
+    const editButtonEmoji = this.editButton.querySelector(".emoji");
+    const dropButtonEmoji = this.dropButton.querySelector(".emoji");
+    editButtonEmoji.textContent = "✏️";
+    dropButtonEmoji.textContent = "🗑️";
+    // Restore button functionality
+    this.editButton.onclick = (e) => {
+      e.preventDefault();
+      this.edit();
+    };
+    // Restore button functionality
+    this.dropButton.onclick = (e) => {
+      e.preventDefault();
+      this.drop();
+    };
+  };
+
   create = () => {
     // Create the friend html structure
 
@@ -279,41 +194,34 @@ export const Friend = class {
       this.containerDiv
     );
 
+    const metaForm = createElem(
+      "form",
+      {
+        id: `friend-form-${this.id}`,
+        className: ["meta", "flex", "flex-row", "grow", "items-center"],
+        method: "post",
+      },
+      this.containerDiv
+    );
     // Create the meta div
     const metaDiv = createElem(
       "div",
       {
-        className: ["meta", "flex", "flex-col", "ml-3", "grow"],
+        className: ["meta", "flex", "flex-col", "mx-3", "grow"],
       },
-      this.containerDiv
-    );
 
+      metaForm
+    );
     // Create input field for name
-    const nameHeading = createElem(
-      "h3",
-      {
-        className: ["font-size-5", "mb-2"],
-      },
-      metaDiv
-    );
-
     this.nameField = createElem(
       "input",
       {
-        className: ["transition", "color-gray-5"],
+        className: ["transition", "color-gray-5", "font-size-5", "mb-2"],
         disabled: true,
         type: "text",
         name: `name-${this.id}`,
         id: `name-input-${this.id}`,
         value: this.name,
-      },
-      nameHeading
-    );
-
-    const numberHeading = createElem(
-      "h4",
-      {
-        className: ["font-size-4", "font-thin"],
       },
       metaDiv
     );
@@ -321,14 +229,14 @@ export const Friend = class {
     this.numberField = createElem(
       "input",
       {
-        classnumber: ["transition", "color-gray-6"],
+        className: ["transition", "color-gray-6", "font-size-4", "font-thin"],
         disabled: true,
         type: "text",
         number: `number-${this.id}`,
         id: `number-input-${this.id}`,
         value: formatPhoneNumber(this.number),
       },
-      numberHeading
+      metaDiv
     );
 
     // Create the button group div and add buttons
@@ -337,7 +245,7 @@ export const Friend = class {
       {
         className: ["button-group", "justify-self-end"],
       },
-      this.containerDiv
+      metaForm
     );
 
     this.editButton = createElem(
@@ -348,8 +256,12 @@ export const Friend = class {
       },
       buttonGroupDiv
     );
-    this.editButton.onclick = (e) => this.edit();
+    this.editButton.onclick = (e) => {
+      e.preventDefault();
+      this.edit();
+    };
 
+    // eslint-disable-next-line no-unused-vars
     const editButtonEmoji = createElem(
       "div",
       { className: "emoji", textContent: "✏️" },
@@ -364,8 +276,12 @@ export const Friend = class {
       },
       buttonGroupDiv
     );
-    this.dropButton.onclick = (e) => this.drop();
+    this.dropButton.onclick = (e) => {
+      e.preventDefault();
+      this.drop();
+    };
 
+    // eslint-disable-next-line no-unused-vars
     const dropButtonEmoji = createElem(
       "div",
       { className: "emoji", textContent: "🗑️" },
@@ -384,31 +300,40 @@ export const Friend = class {
   edit = () => {
     console.log(`Editing friend #${this.id}`);
 
-    // Get elements
-    const editButtonEmoji = this.editButton.querySelector(".emoji");
+    this.#enableEditing();
 
-    // Enable fields
-    this.nameField.disabled = false;
-    this.numberField.disabled = false;
-    this.nameField.focus();
-
-    // Change edit button emoji
-    editButtonEmoji.textContent = "✅";
+    this.avatarDiv.onclick = (e) => {
+      // In your other class
+      const picker = new EmojiPicker((emoji) => {
+        this.avatarDiv.textContent = emoji;
+      });
+    };
 
     this.editButton.onclick = (e) => {
-      storage.updateFriend(
-        this.id,
-        this.nameField.value,
-        this.numberField.value
-      );
-      editButtonEmoji.textContent = "✏️";
-      this.nameField.disabled = true;
-      this.numberField.disabled = true;
-      currentlyEditing = null;
-      // Restore button functionality
-      this.editButton.onclick = (e) => {
-        this.edit();
-      };
+      e.preventDefault();
+      // Validate data
+
+      if (this.nameField.value != "" && isPhoneNumber(this.numberField.value)) {
+        storage.updateFriend(
+          this.id,
+          this.nameField.value,
+          this.numberField.value,
+          this.avatarDiv.textContent
+        );
+        this.#disableEditing();
+      } else {
+        this.nameField.placeholder = "Can't be blank";
+        this.numberField.placeholder = "Can't be blank";
+      }
+    };
+
+    this.dropButton.onclick = (e) => {
+      e.preventDefault();
+      this.nameField.value = this.name;
+      this.numberField.value = formatPhoneNumber(this.number);
+      this.avatarDiv.textContent = this.emoji;
+
+      this.#disableEditing();
     };
   };
 

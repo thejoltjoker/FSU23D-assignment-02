@@ -9,6 +9,26 @@
   width: 100%;
 }
 
+.max-width-xs {
+  max-width: 320px;
+}
+
+.max-width-sm {
+  max-width: 500px;
+}
+
+.max-width-md {
+  max-width: 700px;
+}
+
+.max-width-lg {
+  max-width: 900px;
+}
+
+.max-width-xl {
+  max-width: 1140px;
+}
+
 .height-full {
   height: 100%;
 }
@@ -37,8 +57,16 @@
   flex-direction: column;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .justify-center {
   justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
 }
 
 .items-center {
@@ -168,6 +196,66 @@
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
+}
+
+.m-0 {
+  margin: 0rem;
+}
+
+.mx-0 {
+  margin-left: 0rem;
+  margin-right: 0rem;
+}
+
+.my-0 {
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+}
+
+.ml-0 {
+  margin-left: 0rem;
+}
+
+.mr-0 {
+  margin-right: 0rem;
+}
+
+.mt-0 {
+  margin-top: 0rem;
+}
+
+.mb-0 {
+  margin-bottom: 0rem;
+}
+
+.p-0 {
+  padding: 0rem;
+}
+
+.px-0 {
+  padding-left: 0rem;
+  padding-right: 0rem;
+}
+
+.py-0 {
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+}
+
+.pl-0 {
+  padding-left: 0rem;
+}
+
+.pr-0 {
+  padding-right: 0rem;
+}
+
+.pt-0 {
+  padding-top: 0rem;
+}
+
+.pb-0 {
+  padding-bottom: 0rem;
 }
 
 .m-1 {
@@ -351,302 +439,362 @@
 }
 
 .m-4 {
-  margin: 1.33rem;
+  margin: 1.2rem;
 }
 
 .mx-4 {
-  margin-left: 1.33rem;
-  margin-right: 1.33rem;
+  margin-left: 1.2rem;
+  margin-right: 1.2rem;
 }
 
 .my-4 {
-  margin-top: 1.33rem;
-  margin-bottom: 1.33rem;
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
 }
 
 .ml-4 {
-  margin-left: 1.33rem;
+  margin-left: 1.2rem;
 }
 
 .mr-4 {
-  margin-right: 1.33rem;
+  margin-right: 1.2rem;
 }
 
 .mt-4 {
-  margin-top: 1.33rem;
+  margin-top: 1.2rem;
 }
 
 .mb-4 {
-  margin-bottom: 1.33rem;
+  margin-bottom: 1.2rem;
 }
 
 .p-4 {
-  padding: 1.33rem;
+  padding: 1.2rem;
 }
 
 .px-4 {
-  padding-left: 1.33rem;
-  padding-right: 1.33rem;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
 }
 
 .py-4 {
-  padding-top: 1.33rem;
-  padding-bottom: 1.33rem;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
 }
 
 .pl-4 {
-  padding-left: 1.33rem;
+  padding-left: 1.2rem;
 }
 
 .pr-4 {
-  padding-right: 1.33rem;
+  padding-right: 1.2rem;
 }
 
 .pt-4 {
-  padding-top: 1.33rem;
+  padding-top: 1.2rem;
 }
 
 .pb-4 {
-  padding-bottom: 1.33rem;
+  padding-bottom: 1.2rem;
 }
 
 .m-5 {
-  margin: 1.5rem;
+  margin: 1.33rem;
 }
 
 .mx-5 {
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
+  margin-left: 1.33rem;
+  margin-right: 1.33rem;
 }
 
 .my-5 {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin-top: 1.33rem;
+  margin-bottom: 1.33rem;
 }
 
 .ml-5 {
-  margin-left: 1.5rem;
+  margin-left: 1.33rem;
 }
 
 .mr-5 {
-  margin-right: 1.5rem;
+  margin-right: 1.33rem;
 }
 
 .mt-5 {
-  margin-top: 1.5rem;
+  margin-top: 1.33rem;
 }
 
 .mb-5 {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.33rem;
 }
 
 .p-5 {
-  padding: 1.5rem;
+  padding: 1.33rem;
 }
 
 .px-5 {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 1.33rem;
+  padding-right: 1.33rem;
 }
 
 .py-5 {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+  padding-top: 1.33rem;
+  padding-bottom: 1.33rem;
 }
 
 .pl-5 {
-  padding-left: 1.5rem;
+  padding-left: 1.33rem;
 }
 
 .pr-5 {
-  padding-right: 1.5rem;
+  padding-right: 1.33rem;
 }
 
 .pt-5 {
-  padding-top: 1.5rem;
+  padding-top: 1.33rem;
 }
 
 .pb-5 {
-  padding-bottom: 1.5rem;
+  padding-bottom: 1.33rem;
 }
 
 .m-6 {
-  margin: 2rem;
+  margin: 1.5rem;
 }
 
 .mx-6 {
-  margin-left: 2rem;
-  margin-right: 2rem;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
 }
 
 .my-6 {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .ml-6 {
-  margin-left: 2rem;
+  margin-left: 1.5rem;
 }
 
 .mr-6 {
-  margin-right: 2rem;
+  margin-right: 1.5rem;
 }
 
 .mt-6 {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .mb-6 {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .p-6 {
-  padding: 2rem;
+  padding: 1.5rem;
 }
 
 .px-6 {
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 .py-6 {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .pl-6 {
-  padding-left: 2rem;
+  padding-left: 1.5rem;
 }
 
 .pr-6 {
-  padding-right: 2rem;
+  padding-right: 1.5rem;
 }
 
 .pt-6 {
-  padding-top: 2rem;
+  padding-top: 1.5rem;
 }
 
 .pb-6 {
-  padding-bottom: 2rem;
+  padding-bottom: 1.5rem;
 }
 
 .m-7 {
-  margin: 3rem;
+  margin: 2rem;
 }
 
 .mx-7 {
-  margin-left: 3rem;
-  margin-right: 3rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 .my-7 {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .ml-7 {
-  margin-left: 3rem;
+  margin-left: 2rem;
 }
 
 .mr-7 {
-  margin-right: 3rem;
+  margin-right: 2rem;
 }
 
 .mt-7 {
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 .mb-7 {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .p-7 {
-  padding: 3rem;
+  padding: 2rem;
 }
 
 .px-7 {
-  padding-left: 3rem;
-  padding-right: 3rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .py-7 {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .pl-7 {
-  padding-left: 3rem;
+  padding-left: 2rem;
 }
 
 .pr-7 {
-  padding-right: 3rem;
+  padding-right: 2rem;
 }
 
 .pt-7 {
-  padding-top: 3rem;
+  padding-top: 2rem;
 }
 
 .pb-7 {
-  padding-bottom: 3rem;
+  padding-bottom: 2rem;
 }
 
 .m-8 {
-  margin: 4rem;
+  margin: 3rem;
 }
 
 .mx-8 {
-  margin-left: 4rem;
-  margin-right: 4rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
 }
 
 .my-8 {
-  margin-top: 4rem;
-  margin-bottom: 4rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
 .ml-8 {
-  margin-left: 4rem;
+  margin-left: 3rem;
 }
 
 .mr-8 {
-  margin-right: 4rem;
+  margin-right: 3rem;
 }
 
 .mt-8 {
-  margin-top: 4rem;
+  margin-top: 3rem;
 }
 
 .mb-8 {
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .p-8 {
-  padding: 4rem;
+  padding: 3rem;
 }
 
 .px-8 {
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.py-8 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.pl-8 {
+  padding-left: 3rem;
+}
+
+.pr-8 {
+  padding-right: 3rem;
+}
+
+.pt-8 {
+  padding-top: 3rem;
+}
+
+.pb-8 {
+  padding-bottom: 3rem;
+}
+
+.m-9 {
+  margin: 4rem;
+}
+
+.mx-9 {
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+
+.my-9 {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.ml-9 {
+  margin-left: 4rem;
+}
+
+.mr-9 {
+  margin-right: 4rem;
+}
+
+.mt-9 {
+  margin-top: 4rem;
+}
+
+.mb-9 {
+  margin-bottom: 4rem;
+}
+
+.p-9 {
+  padding: 4rem;
+}
+
+.px-9 {
   padding-left: 4rem;
   padding-right: 4rem;
 }
 
-.py-8 {
+.py-9 {
   padding-top: 4rem;
   padding-bottom: 4rem;
 }
 
-.pl-8 {
+.pl-9 {
   padding-left: 4rem;
 }
 
-.pr-8 {
+.pr-9 {
   padding-right: 4rem;
 }
 
-.pt-8 {
+.pt-9 {
   padding-top: 4rem;
 }
 
-.pb-8 {
+.pb-9 {
   padding-bottom: 4rem;
 }
 
@@ -656,6 +804,10 @@
 
 .shadow-lg {
   box-shadow: 0 25px 70px 0 color-mix(in srgb, #ea7793 50%, rgba(0, 0, 0, 0.2) 50%);
+}
+
+.font-size-0 {
+  font-size: 0rem;
 }
 
 .font-size-1 {
@@ -671,22 +823,26 @@
 }
 
 .font-size-4 {
-  font-size: 1.33rem;
+  font-size: 1.2rem;
 }
 
 .font-size-5 {
-  font-size: 1.5rem;
+  font-size: 1.33rem;
 }
 
 .font-size-6 {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .font-size-7 {
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 .font-size-8 {
+  font-size: 3rem;
+}
+
+.font-size-9 {
   font-size: 4rem;
 }
 
@@ -738,6 +894,10 @@
   z-index: 50;
 }
 
+.radius-0 {
+  border-radius: 0rem;
+}
+
 .radius-1 {
   border-radius: 0.25rem;
 }
@@ -751,22 +911,26 @@
 }
 
 .radius-4 {
-  border-radius: 1.33rem;
+  border-radius: 1.2rem;
 }
 
 .radius-5 {
-  border-radius: 1.5rem;
+  border-radius: 1.33rem;
 }
 
 .radius-6 {
-  border-radius: 2rem;
+  border-radius: 1.5rem;
 }
 
 .radius-7 {
-  border-radius: 3rem;
+  border-radius: 2rem;
 }
 
 .radius-8 {
+  border-radius: 3rem;
+}
+
+.radius-9 {
   border-radius: 4rem;
 }
 
@@ -807,6 +971,16 @@
   border: 1px solid #cfd4e7;
 }
 
+input {
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  padding: 0;
+  margin: 0;
+}
+
 input[type=text],
 input[type=number],
 input[type=email],
@@ -814,11 +988,6 @@ input[type=tel],
 textarea {
   background-color: transparent;
   border-width: 0;
-  font-family: inherit;
-  font-size: inherit;
-  font-style: inherit;
-  font-weight: inherit;
-  line-height: inherit;
   border-radius: 0.5rem;
   cursor: pointer;
   border: 1px solid #cfd4e7;
@@ -1035,8 +1204,7 @@ a {
 
 .artboard {
   background: #fefefe;
-  max-width: 768px;
-  border-radius: 1.33rem;
+  border-radius: 1.2rem;
 }
 
 .friend {
@@ -1044,6 +1212,9 @@ a {
 }
 .friend:hover {
   background-color: #f2f2fb;
+}
+.friend-editable:hover {
+  background-color: #fbe6ec !important;
 }
 .friend button .emoji {
   transition: all 0.3s ease;
@@ -1063,12 +1234,12 @@ a {
 .friend textarea {
   box-sizing: border-box;
   border: none;
-  padding: 0;
+  padding: inherit;
+  width: 100%;
   text-decoration: underline;
   text-decoration-style: dotted;
   text-decoration-color: #f095ab;
   box-shadow: none;
-  margin: 0;
   color: #d74467;
 }
 .friend input[type=text]:hover,
@@ -1108,16 +1279,22 @@ a {
   animation-direction: alternate;
 }
 .friend .avatar {
-  width: 5rem;
+  min-width: 5rem;
   aspect-ratio: 1/1;
   overflow: hidden;
   background: #f2f2fb;
-  box-shadow: 0 0 0 2px #f4b7c6 inset, 0 0 0 4px #fefefe inset, 0 0 0 6px #cfd4e7 inset;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 2rem;
+  box-shadow: 0 0 0 2px #cfd4e7 inset, 0 0 0 4px #fefefe inset, 0 0 0 6px #e9e9f1 inset;
+}
+.friend .avatar-editable {
+  box-shadow: 0 0 0 2px #f4b7c6 inset, 0 0 0 4px #fefefe inset, 0 0 0 6px #e9e9f1 inset !important;
+}
+.friend .avatar-editable:hover {
+  cursor: pointer;
 }
 .friend .avatar text {
   font-family: "Inter", "Noto Color Emoji", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -1137,6 +1314,26 @@ a {
 }
 #clear-list:before {
   content: attr(data-before);
+}
+
+#emoji-picker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 100%;
+  font-size: calc(1.2rem + 2vw);
+}
+#emoji-picker ul li {
+  cursor: pointer;
+  scale: 0.9;
+}
+#emoji-picker ul li:hover {
+  animation-duration: 1s;
+  animation-name: shake;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+  scale: 1.1;
 }
 
 .slide-down {

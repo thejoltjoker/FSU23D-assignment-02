@@ -89,7 +89,6 @@ a {
 
 .artboard {
   background: map-get($colors, "white");
-  max-width: map-get($breakpoints, "md");
   @include border-radius(4);
 }
 
@@ -98,6 +97,11 @@ a {
   // background-color: map-get($colors, "white");
   &:hover {
     background-color: map-get($colors, "gray-1");
+  }
+  &-editable {
+    &:hover {
+      background-color: map-get($colors, "pink-1") !important;
+    }
   }
 
   button {
@@ -118,12 +122,12 @@ a {
   textarea {
     box-sizing: border-box;
     border: none;
-    padding: 0;
+    padding: inherit;
+    width: 100%;
     text-decoration: underline;
     text-decoration-style: dotted;
     text-decoration-color: map-get($colors, "pink-4");
     box-shadow: none;
-    margin: 0;
     color: map-get($colors, "red");
 
     &:hover {
@@ -144,19 +148,26 @@ a {
   }
 
   .avatar {
-    width: calc($friend-list-item-height - $friend-list-item-padding * 2);
+    min-width: calc($friend-list-item-height - $friend-list-item-padding * 2);
     aspect-ratio: 1 / 1;
     overflow: hidden;
     background: map-get($colors, "gray-1");
-    box-shadow: 0 0 0 2px map-get($colors, "pink-3") inset,
-      0 0 0 4px map-get($colors, "white") inset,
-      0 0 0 6px map-get($colors, "gray-3") inset;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: calc($friend-list-item-height - $friend-list-item-padding * 5);
-
+    box-shadow: 0 0 0 2px map-get($colors, "gray-3") inset,
+      0 0 0 4px map-get($colors, "white") inset,
+      0 0 0 6px map-get($colors, "gray-2") inset;
+    &-editable {
+      box-shadow: 0 0 0 2px map-get($colors, "pink-3") inset,
+        0 0 0 4px map-get($colors, "white") inset,
+        0 0 0 6px map-get($colors, "gray-2") inset !important;
+      &:hover {
+        cursor: pointer;
+      }
+    }
     & text {
       font-family: $font-family;
     }
@@ -176,6 +187,25 @@ a {
   }
   &:before {
     content: attr(data-before);
+  }
+}
+
+#emoji-picker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 100%;
+  font-size: calc(map-get($levels, 4) * $base-size + 2vw);
+  ul {
+    li {
+      cursor: pointer;
+      scale: 0.9;
+
+      &:hover {
+        @include shake($animation-duration * 2);
+        scale: 1.1;
+      }
+    }
   }
 }
 

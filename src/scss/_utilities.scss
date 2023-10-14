@@ -10,6 +10,12 @@
   width: 100%;
 }
 
+@each $name, $width in $widths {
+  .max-width-#{$name} {
+    max-width: $width;
+  }
+}
+
 .height-full {
   height: 100%;
 }
@@ -38,12 +44,22 @@
   flex-direction: column;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .justify-center {
   justify-content: center;
 }
+
+.justify-between {
+  justify-content: space-between;
+}
+
 .items-center {
   align-items: center;
 }
+
 .justify-self-end {
   justify-self: end;
 }
@@ -123,6 +139,7 @@
   box-shadow: 0 math.div($base-size, 2) $base-size 0
     color-mix(in srgb, map-get($colors, "pink-5") 50%, rgba(0, 0, 0, 0.2) 50%);
 }
+
 .shadow-lg {
   box-shadow: 0 25px 70px 0
     color-mix(in srgb, map-get($colors, "pink-5") 50%, rgba(0, 0, 0, 0.2) 50%);
@@ -214,7 +231,15 @@
   cursor: pointer;
   border: 1px solid map-get($colors, "gray-3");
 }
-
+input {
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  padding: 0;
+  margin: 0;
+}
 input[type="text"],
 input[type="number"],
 input[type="email"],
@@ -222,11 +247,6 @@ input[type="tel"],
 textarea {
   background-color: transparent;
   border-width: 0;
-  font-family: inherit;
-  font-size: inherit;
-  font-style: inherit;
-  font-weight: inherit;
-  line-height: inherit;
   border-radius: $button-radius;
   cursor: pointer;
   border: 1px solid map-get($colors, "gray-3");

@@ -38,8 +38,9 @@ const placeholderNames = [
 
 const animationDuration = 500;
 
-document.addEventListener("DOMContentLoaded", function (event) {
+document.addEventListener("DOMContentLoaded", () => {
   // Get friends from localStorage on page load
+  const friendsList = document.querySelector("#friends-list");
   display.populateList();
   const formName = document.querySelector("#input-name");
   const formNumber = document.querySelector("#input-number");
@@ -55,16 +56,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
     let name = randomInArray(placeholderNames);
     let number = randomPhoneNumber();
     // TODO Change this back before commit
-    formName.value = "";
-    formNumber.value = "";
-    // formName.value = name;
-    // formNumber.value = number;
+    // formName.value = "";
+    // formNumber.value = "";
+    formName.value = name;
+    formNumber.value = number;
     formName.placeholder = name;
     formNumber.placeholder = number;
   };
   const showModal = () => {
     // TODO remove this before commit
-    // clearForm();
+    clearForm();
     // END TODO
 
     modalContainer.classList.add("fade-in");
@@ -97,15 +98,20 @@ document.addEventListener("DOMContentLoaded", function (event) {
       );
 
       // Add friend to local storage
-      const friend = storage.insertFriend(formName.value, formNumber.value);
-      closeModal();
-      display.showFriend(friend, true);
-      formName.focus();
+      const friendData = storage.insertFriend(formName.value, formNumber.value);
+      console.log(...Object.values(friendData));
+      const friend = new display.Friend(
+        ...Object.values(friendData),
+        friendsList
+      );
+      friend.create();
+
       clearForm();
+      closeModal();
     } else if (formName.value && formNumber.value) {
       messageDiv.classList.remove("display-none");
       messageDiv.innerText = `🤔 ${formNumber.value} is not a number1...`;
-      console.log(`${number.value} is not a number...`);
+      console.log(`${formNumber.value} is not a number...`);
     } else {
       messageDiv.classList.remove("display-none");
       messageDiv.innerText = `🤓 You need to fill out all fields!`;
@@ -149,7 +155,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
   });
 
   // Testing stuff
-  const testArea = document.querySelector("#test-area");
-  let friend = new display.Friend(123, "John Doe", "12345678", "🤡", testArea);
-  friend.create();
+  // const testArea = document.querySelector("#test-area");
+  // const emojiPicker = new display.EmojiPicker(testArea);
 });

@@ -1,4 +1,3 @@
-import { randomEmoji } from "./emoji.js";
 import { cleanNumber } from "./utility.js";
 
 /**
@@ -76,8 +75,11 @@ export const updateFriend = (id, name, number, emoji) => {
     emoji: emoji,
   };
 
-  const index = friends.findIndex((friend) => friend.id == id);
-
+  console.log(friends);
+  const index = friends.findIndex(
+    (friend) => friend.id.toString() == id.toString()
+  );
+  console.log(`Updating friend #${id} ${index}`);
   // Update friend in array
   friends[index] = friend;
 

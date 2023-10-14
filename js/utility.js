@@ -28,20 +28,21 @@ export const cleanNumber = (value) => {
   return cleaned;
 };
 
-export const formatPhoneNumber = (number) => {
-  return (
-    number.slice(0, 4) +
-    "-" +
-    number.slice(4, 6) +
-    " " +
-    number.slice(6, 8) +
-    " " +
-    number.slice(8)
-  );
+export const getCursorPos = (event) => {
+  let x = event.clientX;
+  let y = event.clientY;
+  return x, y;
 };
 
-const extractId = (value) => {
-  var re = /^\d+$/;
-  var arr = re.exec(value);
-  return arr;
+export const formatPhoneNumber = (number) => {
+  let formattedNumber = "";
+  for (let i = 0; i < number.length; i++) {
+    if (i == 4) {
+      formattedNumber += "-";
+    } else if (i > 4 && i % 2 == 0) {
+      formattedNumber += " ";
+    }
+    formattedNumber += number[i];
+  }
+  return formattedNumber;
 };
