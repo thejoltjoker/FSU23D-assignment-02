@@ -47,6 +47,12 @@ img {
 }
 
 // Custom styles
+:root {
+  --slide-down-distance: -7rem;
+  --avatar-width-mult: 3;
+  --avatar-font-mult: 5.5;
+}
+
 body {
   font-family: $font-family;
   background: map-get($colors, "pink-5");
@@ -78,7 +84,7 @@ a {
 }
 
 .friend {
-  height: $friend-list-item-height;
+  // height: $friend-list-item-height;
   // background-color: map-get($colors, "white");
   &:hover {
     background-color: map-get($colors, "gray-1");
@@ -133,7 +139,6 @@ a {
   }
 
   .avatar {
-    min-width: calc($friend-list-item-height - $friend-list-item-padding * 2);
     aspect-ratio: 1 / 1;
     overflow: hidden;
     background: map-get($colors, "gray-1");
@@ -141,7 +146,27 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: calc($friend-list-item-height - $friend-list-item-padding * 5);
+    @media screen and (min-width: map-get($breakpoints, "sm")) {
+      --avatar-width-mult: 2;
+      --avatar-font-mult: 5;
+    }
+    @media screen and (min-width: map-get($breakpoints, "md")) {
+      --avatar-width-mult: 2;
+      --avatar-font-mult: 5;
+    }
+    @media screen and (min-width: map-get($breakpoints, "lg")) {
+      --avatar-width-mult: 1;
+      --avatar-font-mult: 4;
+    }
+
+    min-width: calc(
+      $friend-list-item-height - $friend-list-item-padding *
+        var(--avatar-width-mult)
+    );
+    font-size: calc(
+      $friend-list-item-height - $friend-list-item-padding *
+        var(--avatar-font-mult)
+    );
     box-shadow: 0 0 0 2px map-get($colors, "gray-3") inset,
       0 0 0 4px map-get($colors, "white") inset,
       0 0 0 6px map-get($colors, "gray-2") inset;
@@ -185,7 +210,18 @@ a {
     }
   }
 }
+#save-button {
+  background: map-get($colors, "cyan");
+  border-color: color-mix(in srgb, map-get($colors, "cyan") 80%, #000);
+  &:hover {
+    background: color-mix(in srgb, map-get($colors, "cyan") 80%, #fff);
+    border-color: color-mix(in srgb, map-get($colors, "cyan") 90%, #000);
+  }
+}
 
+#friend-form-message {
+  color: map-get($colors, "pink-5");
+}
 #clear-list {
   color: map-get($colors, "red");
   &:hover {
@@ -200,9 +236,22 @@ a {
   position: absolute;
   top: 0;
   left: 0;
-  max-width: 100%;
+  width: calc(100% - map-get($levels, 3) * $base-size);
+  max-height: auto;
+  overflow-y: auto;
   font-size: calc(map-get($levels, 4) * $base-size + 2vw);
   ul {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    @media screen and (min-width: map-get($breakpoints, "sm")) {
+      grid-template-columns: repeat(10, 1fr);
+    }
+    @media screen and (min-width: map-get($breakpoints, "md")) {
+      grid-template-columns: repeat(12, 1fr);
+    }
+    @media screen and (min-width: map-get($breakpoints, "lg")) {
+      grid-template-columns: repeat(16, 1fr);
+    }
     li {
       cursor: pointer;
       scale: 0.9;
@@ -243,7 +292,7 @@ a {
 
 @keyframes slideDown {
   from {
-    margin-top: -$friend-list-item-height;
+    margin-top: var(--slide-down-distance);
     opacity: 0;
   }
   35% {

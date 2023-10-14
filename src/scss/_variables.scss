@@ -1,4 +1,6 @@
 @use "sass:color";
+
+
 /* Variables */
 $base-size: 1rem;
 $levels: (
@@ -51,7 +53,7 @@ $size-avatar: 80px;
 
 // Breakpoints
 $breakpoints: (
-  "xs": 0,
+  "xs": 320px,
   "sm": 576px,
   "md": 768px,
   "lg": 992px,

@@ -68,17 +68,16 @@ export const EmojiPicker = class {
       },
       document.querySelector("body")
     );
-    const ul = createElem(
-      "ul",
-      { className: ["flex", "flex-wrap", "justify-between"] },
-      this.pickerDiv
-    );
+    const ul = createElem("ul", { className: ["flex"] }, this.pickerDiv);
 
     // Display emojis
     emojis.forEach((emoji) => {
       let elem = createElem(
         "li",
-        { textContent: emoji, className: ["transition"] },
+        {
+          textContent: emoji,
+          className: ["transition", "text-center", "ar-square"],
+        },
         ul
       );
       elem.onclick = (e) => {
@@ -176,7 +175,8 @@ export const Friend = class {
         "friend",
         "inline-flex",
         "items-center",
-        "p-3",
+        "p-2",
+        "p-md-3",
         "radius-3",
         "transition",
       ],
@@ -209,7 +209,7 @@ export const Friend = class {
     const metaDiv = createElem(
       "div",
       {
-        className: ["meta", "flex", "flex-col", "mx-3", "grow"],
+        className: ["meta", "flex", "flex-col", "grow", "mx-2", "mx-sm-3"],
       },
 
       metaForm
@@ -218,7 +218,14 @@ export const Friend = class {
     this.nameField = createElem(
       "input",
       {
-        className: ["transition", "color-gray-5", "font-size-5", "mb-2"],
+        className: [
+          "transition",
+          "color-gray-5",
+          "mb-2",
+          "font-size-4",
+          "font-size-sm-5",
+          "font-size-lg-6",
+        ],
         disabled: true,
         type: "text",
         name: `name-${this.id}`,
@@ -231,7 +238,14 @@ export const Friend = class {
     this.numberField = createElem(
       "input",
       {
-        className: ["transition", "color-gray-6", "font-size-4", "font-thin"],
+        className: [
+          "transition",
+          "color-gray-6",
+          "font-thin",
+          "font-size-3",
+          "font-size-sm-4",
+          "font-size-lg-4",
+        ],
         disabled: true,
         type: "text",
         number: `number-${this.id}`,
@@ -254,7 +268,7 @@ export const Friend = class {
       "button",
       {
         id: `edit-friend-${this.id}`,
-        className: "button",
+        className: ["button", "py-3", "px-2", "px-md-3"],
       },
       buttonGroupDiv
     );
@@ -274,7 +288,7 @@ export const Friend = class {
       "button",
       {
         id: `drop-friend-${this.id}`,
-        className: "button",
+        className: ["button", "py-3", "px-2", "px-md-3"],
       },
       buttonGroupDiv
     );
@@ -292,6 +306,12 @@ export const Friend = class {
 
     // Add friend
     this.parent.appendChild(this.containerDiv);
+
+    // Set the correct sliding distance to avoid choppy animation
+    document.documentElement.style.setProperty(
+      "--slide-down-distance",
+      `-${this.containerDiv.offsetHeight}px`
+    );
 
     // Remove animation class
     setTimeout(() => {

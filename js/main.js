@@ -66,21 +66,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const clearForm = () => {
     let name = randomInArray(placeholderNames);
     let number = randomPhoneNumber();
-    // TODO Change this back before commit
-    // formName.value = "";
-    // formNumber.value = "";
-    formName.value = name;
-    formNumber.value = number;
+
+    formName.value = "";
+    formNumber.value = "";
     formName.placeholder = name;
     formNumber.placeholder = number;
     formEmoji.textContent = "👤";
   };
 
   const showModal = () => {
-    // TODO remove this before commit
-    clearForm();
-    // END TODO
-
     modalContainer.classList.add("fade-in");
     modalContainer.classList.remove("display-none");
 
@@ -131,11 +125,22 @@ document.addEventListener("DOMContentLoaded", () => {
       clearForm();
     } else if (formName.value && formNumber.value) {
       messageDiv.classList.remove("display-none");
+
+      // messageDiv.classList.add("slide-down");
+
       messageDiv.innerText = `🤔 ${formNumber.value} is not a number1...`;
       console.log(`${formNumber.value} is not a number...`);
     } else {
-      messageDiv.classList.remove("display-none");
       messageDiv.innerText = `🤓 You need to fill out all fields!`;
+      // const slideDown = (element) => {
+      //   const mt = element.style.marginTop;
+      //   const h = element.offsetHeight;
+      //   console.log(h);
+      //   element.style.marginTop = `-${h}px`;
+      // };
+      // slideDown(messageDiv);
+      messageDiv.classList.remove("display-none");
+      // messageDiv.style.marginTop = "0";
       console.log("No new friends for you...");
     }
   });
@@ -177,6 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Testing stuff
   showModal();
+  
   // const testArea = document.querySelector("#test-area");
   // const emojiPicker = new display.EmojiPicker(testArea);
 });

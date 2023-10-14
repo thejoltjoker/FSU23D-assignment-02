@@ -32,6 +32,10 @@
   flex-grow: 1;
 }
 
+.ar-square {
+  aspect-ratio: 1 / 1;
+}
+
 .shrink {
   flex-shrink: 1;
 }
@@ -54,6 +58,10 @@
 
 .justify-between {
   justify-content: space-between;
+}
+
+.justify-even {
+  justify-content: space-evenly;
 }
 
 .items-center {
@@ -134,6 +142,59 @@
   }
 }
 
+@each $breakpoint, $value in $breakpoints {
+  @media screen and (min-width: $value) {
+    @each $level, $i in $levels {
+      .m-#{$breakpoint}-#{$level} {
+        margin: $base-size * $i;
+      }
+      .mx-#{$breakpoint}-#{$level} {
+        margin-left: $base-size * $i;
+        margin-right: $base-size * $i;
+      }
+      .my-#{$breakpoint}-#{$level} {
+        margin-top: $base-size * $i;
+        margin-bottom: $base-size * $i;
+      }
+      .ml-#{$breakpoint}-#{$level} {
+        margin-left: $base-size * $i;
+      }
+      .mr-#{$breakpoint}-#{$level} {
+        margin-right: $base-size * $i;
+      }
+      .mt-#{$breakpoint}-#{$level} {
+        margin-top: $base-size * $i;
+      }
+      .mb-#{$breakpoint}-#{$level} {
+        margin-bottom: $base-size * $i;
+      }
+      .p-#{$breakpoint}-#{$level} {
+        padding: $base-size * $i;
+      }
+      .px-#{$breakpoint}-#{$level} {
+        padding-left: $base-size * $i;
+        padding-right: $base-size * $i;
+      }
+      .py-#{$breakpoint}-#{$level} {
+        padding-top: $base-size * $i;
+        padding-bottom: $base-size * $i;
+      }
+      .pl-#{$breakpoint}-#{$level} {
+        padding-left: $base-size * $i;
+      }
+      .pr-#{$breakpoint}-#{$level} {
+        padding-right: $base-size * $i;
+      }
+      .pt-#{$breakpoint}-#{$level} {
+        padding-top: $base-size * $i;
+      }
+      .pb-#{$breakpoint}-#{$level} {
+        padding-bottom: $base-size * $i;
+      }
+    }
+  }
+}
+
 // Shadow
 .shadow-sm {
   box-shadow: 0 math.div($base-size, 2) $base-size 0
@@ -149,6 +210,16 @@
 @each $level, $i in $levels {
   .font-size-#{$level} {
     font-size: $base-size * $i;
+  }
+}
+
+@each $breakpoint, $value in $breakpoints {
+  @media screen and (min-width: $value) {
+    @each $level, $i in $levels {
+      .font-size-#{$breakpoint}-#{$level} {
+        font-size: $base-size * $i;
+      }
+    }
   }
 }
 
@@ -217,8 +288,7 @@
     }
   }
 }
-
-.button {
+button {
   background-color: transparent;
   border-width: 0;
   font-family: inherit;
@@ -226,8 +296,9 @@
   font-style: inherit;
   font-weight: inherit;
   line-height: inherit;
+}
+.button {
   border-radius: $button-radius;
-  padding: $base-size * map-get($levels, 3);
   cursor: pointer;
   border: 1px solid map-get($colors, "gray-3");
 }
@@ -245,11 +316,12 @@ input[type="number"],
 input[type="email"],
 input[type="tel"],
 textarea {
+  cursor: text;
   background-color: transparent;
   border-width: 0;
   border-radius: $button-radius;
-  cursor: text;
   border: 1px solid map-get($colors, "gray-3");
+  width: 100%;
   @include padding(2);
   &:focus {
     box-shadow: 0 math.div($base-size, 3) $base-size 0
@@ -293,7 +365,7 @@ textarea {
   outline: 0;
 }
 .modal-content {
-  max-width: fit-content;
+  max-width: 100%;
 }
 
 .display-none {

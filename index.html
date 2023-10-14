@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- 
-  TODO add falling hearts background
-  TODO add waving hand animation to add friend modal
-  TODO spin emojis on edit button click
--->
+  <!-- TODO Mobile design -->
+  <!-- TODO add falling hearts background -->
+  <!-- TODO add waving hand animation to add friend modal -->
+  <!-- TODO spin emojis on edit button click -->
 
   <head>
     <meta charset="UTF-8" />
@@ -26,9 +25,13 @@
 
   <body>
     <div class="container max-width-lg pt-7 mx-auto">
-      <div class="artboard flex flex-col radius-4 shadow-lg mx-auto p-3 mx-4">
-        <div class="logo text-center text-lg mt-6 pb-6 no-select">🦄</div>
-        <h1 class="text-center mb-6">✨ Friends 4 Ever ✨</h1>
+      <div
+        class="artboard flex flex-col radius-4 shadow-lg mx-auto mx-2 mx-sm-3 mx-md-7 p-sm-2 p-md-3"
+      >
+        <div class="logo text-center mt-6 pb-6 no-select">🦄</div>
+        <h1 class="text-center mb-6 font-size-6 font-size-md-7">
+          ✨ Friends 4 Ever ✨
+        </h1>
         <a
           href=""
           id="add-friend"
@@ -38,7 +41,7 @@
         <div id="friends-list" class="flex flex-col transition">
           <!-- Friends go here 🤗 -->
         </div>
-        <div class="text-center font-bold mt-3">
+        <div class="text-center font-bold my-3">
           <a href="" id="clear-list" class="transition" data-before="😭 "
             >Clear list</a
           >
@@ -78,8 +81,17 @@
                   class="transition"
                 />
               </div>
-              <div id="friend-form-message" class="display-none"></div>
-              <button type="submit" id="save-button" class="button bg-cyan">
+              <div
+                id="friend-form-message"
+                class="display-none text-center pb-4 transition"
+              >
+                &nbsp;
+              </div>
+              <button
+                type="submit"
+                id="save-button"
+                class="button p-2 font-size-4 font-bold transition"
+              >
                 😻 Save 😻
               </button>
             </form>
@@ -90,5 +102,6 @@
     <!-- <div class="blackout transition"></div> -->
     <div id="test-area"></div>
     <script src="./js/main.js" type="module"></script>
+    <script src="./js/emoji.js" type="module"></script>
   </body>
 </html>

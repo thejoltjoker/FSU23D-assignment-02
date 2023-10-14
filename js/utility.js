@@ -1,4 +1,10 @@
 "use strict";
+export const slideDown = (element) => {
+  const offsetHeight = element.offsetHeight;
+  console.log(offsetHeight);
+  // Apply the new margin-top value with a negative sign
+  element.style.marginTop = `-${offsetHeight}px`;
+};
 
 export const isPhoneNumber = (value) => {
   const re = /^[\d- ]+$/;
