@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Add placeholders
   formName.placeholder = randomName();
   formNumber.placeholder = randomPhoneNumber();
+  formEmoji.textContent = "👤";
 
   // Add emoji picker
   formEmoji.onclick = () => {
@@ -34,13 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalContainer = document.querySelector(".modal-container");
 
   const clearForm = () => {
-    let name = randomName();
-    let number = randomPhoneNumber();
+    form.reset();
 
-    formName.value = "";
-    formNumber.value = "";
-    formName.placeholder = name;
-    formNumber.placeholder = number;
+    formName.placeholder = randomName();
+    formNumber.placeholder = randomPhoneNumber();
     formEmoji.textContent = "👤";
   };
 
@@ -66,38 +64,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Submit new friend
   form.addEventListener("submit", (e) => {
+    // on form submission, prevent default
     e.preventDefault();
+
+    // construct a FormData object, which fires the formdata event
+    new FormData(form);
+  });
+
+  form.addEventListener("formdata", (e) => {
+    // Get the form data from the event object
+    const formData = e.formData;
+
+    // Add emoji to formdata
+    formData.set("emoji", formEmoji.textContent);
+
     const messageDiv = document.querySelector("#friend-form-message");
 
-    if (formName.value && isPhoneNumber(formNumber.value)) {
-      let emoji = formEmoji.textContent;
-
+    if (formData.get("name") && isPhoneNumber(formData.get("number"))) {
       // perform operation with form input
       console.log(
-        `New friend ${formName.value} ${emoji} with number ${formNumber.value}, yay!`
+        `New friend ${formData.get("name")} ${formData.get(
+          "emoji"
+        )} with number ${formData.get("number")}, yay!`
       );
 
       // Add friend to local storage
-      const friendData = storage.insertFriend(
-        formName.value,
-        formNumber.value,
-        emoji
-      );
+      const friendData = storage.insertFriend(...formData.values());
 
-      console.log(...Object.values(friendData));
+      // Show friend in list
       const friend = new display.Friend(
         ...Object.values(friendData),
         friendsList
       );
       friend.create();
 
+      // Close modal and reset form
       closeModal();
       clearForm();
-    } else if (formName.value && formNumber.value) {
+    } else if (formData.get("name") && formData.get("number")) {
       messageDiv.classList.remove("display-none");
 
-      messageDiv.innerText = `🤔 ${formNumber.value} is not a number1...`;
-      console.log(`${formNumber.value} is not a number...`);
+      messageDiv.innerText = `🤔 ${formData.get("number")} is not a number1...`;
+      console.log(`${formData.get("number")} is not a number...`);
     } else {
       // TODO Slide down error message
       messageDiv.innerText = `🤓 You need to fill out all fields!`;
@@ -109,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Clear list
   const clear = document.querySelector("#clear-list");
-  clear.dataset.content = "test";
+
   clear.addEventListener("click", (e) => {
     e.preventDefault();
     const confirmEmoji = "😱 ";
@@ -124,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
       clear.setAttribute("data-before", "😭 ");
       clear.innerText = "Clear list";
     } else {
-      clear.setAttribute("data-before", "😱 ");
+      clear.setAttribute("data-before", confirmEmoji);
       clear.innerText = "Are you sure?";
     }
   });
