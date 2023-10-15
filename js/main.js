@@ -2,8 +2,8 @@
 
 import * as display from "./display.js";
 import * as storage from "./storage.js";
-import { randomEmoji } from "./emoji.js";
 import { randomPhoneNumber, isPhoneNumber, randomInArray } from "./utility.js";
+// TODO remove offensive names
 const placeholderNames = [
   "Ben Dover",
   "Anita Bath",
@@ -51,8 +51,9 @@ document.addEventListener("DOMContentLoaded", () => {
   formNumber.placeholder = randomPhoneNumber();
 
   // Add emoji picker
-  formEmoji.onclick = (e) => {
+  formEmoji.onclick = () => {
     // In your other class
+    // eslint-disable-next-line no-unused-vars
     const picker = new display.EmojiPicker((emoji) => {
       formEmoji.textContent = emoji;
     });

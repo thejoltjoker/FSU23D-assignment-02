@@ -2,7 +2,6 @@ import * as storage from "./storage.js";
 import {
   cleanNumber,
   formatPhoneNumber,
-  getCursorPos,
   isPhoneNumber,
 } from "./utility.js";
 import { emojis } from "./emoji.js";
@@ -102,9 +101,6 @@ export const EmojiPicker = class {
       margin -= parseInt(window.getComputedStyle(this.pickerDiv).margin);
       return `${margin}px`;
     })();
-    // () => {
-
-    // };
   };
 
   pick = (emoji) => {
@@ -344,8 +340,9 @@ export const Friend = class {
 
     this.#enableEditing();
 
-    this.avatarDiv.onclick = (e) => {
+    this.avatarDiv.onclick = () => {
       // In your other class
+      // eslint-disable-next-line no-unused-vars
       const picker = new EmojiPicker((emoji) => {
         this.avatarDiv.textContent = emoji;
       });

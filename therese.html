@@ -1,0 +1,17 @@
+<ul>
+  <li>
+    <form>
+      <input type="text" />
+      <input type="tel" />
+      <button onclick="remove(event)">Ta bort</button>
+    </form>
+  </li>
+</ul>
+
+<script>
+  function remove(event) {
+    event.preventDefault();
+    var form = event.target.parentElement.parentElement;
+    form.remove();
+  }
+</script>

@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- TODO Mobile design -->
+  <!-- TODO create modal programmatically -->
+  <!-- TODO make emoji picker into a modal -->
   <!-- TODO add falling hearts background -->
   <!-- TODO add waving hand animation to add friend modal -->
   <!-- TODO spin emojis on edit button click -->
-  <!-- TODO create modal programmatically -->
-  <!-- TODO make emoji picker into a modal -->
 
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Friends 4 Ever</title>
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/style.min.css" />
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👋</text></svg>"
@@ -26,7 +25,7 @@
   </head>
 
   <body>
-    <div class="container max-width-lg pt-7 mx-auto">
+    <div class="container max-width-lg pt-2 pt-sm-4 pt-md-7 mx-auto">
       <div
         class="artboard flex flex-col radius-4 shadow-lg mx-auto mx-2 mx-sm-3 mx-md-7 p-sm-2 p-md-3"
       >
@@ -43,7 +42,9 @@
         <div id="friends-list" class="flex flex-col transition">
           <!-- Friends go here 🤗 -->
         </div>
-        <div class="text-center font-bold my-3">
+        <div
+          class="text-center font-bold font-size-3 font-size-md-4 mt-3 mb-3 mb-sm-2"
+        >
           <a href="" id="clear-list" class="transition" data-before="😭 "
             >Clear list</a
           >

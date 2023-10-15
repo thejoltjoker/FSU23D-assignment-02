@@ -310,6 +310,7 @@ input {
   line-height: inherit;
   padding: 0;
   margin: 0;
+  opacity: 1; /* required on iOS */
 }
 input[type="text"],
 input[type="number"],
