@@ -1,12 +1,8 @@
 import * as storage from "./storage.js";
-import {
-  cleanNumber,
-  formatPhoneNumber,
-  isPhoneNumber,
-} from "./utility.js";
+import { cleanNumber, formatPhoneNumber, isPhoneNumber } from "./utility.js";
 import { emojis } from "./emoji.js";
 const animationDuration = 500;
-
+// TODO Create modal class
 /**
  *
  *

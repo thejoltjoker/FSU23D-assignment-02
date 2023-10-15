@@ -2,41 +2,10 @@
 
 import * as display from "./display.js";
 import * as storage from "./storage.js";
-import { randomPhoneNumber, isPhoneNumber, randomInArray } from "./utility.js";
-// TODO remove offensive names
-const placeholderNames = [
-  "Ben Dover",
-  "Anita Bath",
-  "Alotta Fagina",
-  "Seymour Butz",
-  "Heywood Jablome",
-  "Mike Rotch",
-  "Ivana Tinkle",
-  "Hugh Jass",
-  "Rusty Kuntz",
-  "Anita Dick",
-  "Willie B. Hardigan",
-  "Harry Balzac",
-  "Dick Tater",
-  "Al Beback",
-  "Phil McCracken",
-  "Ima Hogg",
-  "Ivana Mandic",
-  "Sue Flay",
-  "Justin Time",
-  "Barb Dwyer",
-  "Eileen Dover",
-  "Don Keigh",
-  "Moe Lester",
-  "Robin Banks",
-  "Hal Appeno",
-  "Amanda Hugginkiss",
-  "Noah Fence",
-  "Candy Barr",
-  "Barry Cade",
-];
+import { randomPhoneNumber, isPhoneNumber, randomName } from "./utility.js";
 
 const animationDuration = 500;
+// TODO Create new contact class
 
 document.addEventListener("DOMContentLoaded", () => {
   // Get friends from localStorage on page load
@@ -47,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const formEmoji = document.querySelector("#friend-form-name .emoji");
 
   // Add placeholders
-  formName.placeholder = randomInArray(placeholderNames);
+  formName.placeholder = randomName();
   formNumber.placeholder = randomPhoneNumber();
 
   // Add emoji picker
@@ -65,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalContainer = document.querySelector(".modal-container");
 
   const clearForm = () => {
-    let name = randomInArray(placeholderNames);
+    let name = randomName();
     let number = randomPhoneNumber();
 
     formName.value = "";
@@ -127,21 +96,13 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (formName.value && formNumber.value) {
       messageDiv.classList.remove("display-none");
 
-      // messageDiv.classList.add("slide-down");
-
       messageDiv.innerText = `🤔 ${formNumber.value} is not a number1...`;
       console.log(`${formNumber.value} is not a number...`);
     } else {
+      // TODO Slide down error message
       messageDiv.innerText = `🤓 You need to fill out all fields!`;
-      // const slideDown = (element) => {
-      //   const mt = element.style.marginTop;
-      //   const h = element.offsetHeight;
-      //   console.log(h);
-      //   element.style.marginTop = `-${h}px`;
-      // };
-      // slideDown(messageDiv);
       messageDiv.classList.remove("display-none");
-      // messageDiv.style.marginTop = "0";
+
       console.log("No new friends for you...");
     }
   });

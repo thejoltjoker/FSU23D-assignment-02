@@ -258,7 +258,12 @@ export const emojis = [
   "🪱",
   "🦠",
 ];
-console.log(emojis.length);
+
+/**
+ * Returns a random emoji from the array of emojis.
+ * @returns {string} A randomly selected emoji.
+ */
 export const randomEmoji = () => {
-  return emojis[Math.floor(Math.random() * emojis.length)];
+  const randomIndex = Math.floor(Math.random() * emojis.length);
+  return emojis[randomIndex];
 };

@@ -84,11 +84,10 @@ a {
 }
 
 .friend {
-  // height: $friend-list-item-height;
-  // background-color: map-get($colors, "white");
   &:hover {
     background-color: map-get($colors, "gray-1");
   }
+
   &-editable {
     &:hover {
       background-color: map-get($colors, "pink-1") !important;
@@ -106,6 +105,7 @@ a {
       }
     }
   }
+
   input[type="text"],
   input[type="number"],
   input[type="email"],
@@ -146,6 +146,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+
     @media screen and (min-width: map-get($breakpoints, "sm")) {
       --avatar-width-mult: 2;
       --avatar-font-mult: 5;
@@ -163,13 +164,16 @@ a {
       $friend-list-item-height - $friend-list-item-padding *
         var(--avatar-width-mult)
     );
+
     font-size: calc(
       $friend-list-item-height - $friend-list-item-padding *
         var(--avatar-font-mult)
     );
+
     box-shadow: 0 0 0 2px map-get($colors, "gray-3") inset,
       0 0 0 4px map-get($colors, "white") inset,
       0 0 0 6px map-get($colors, "gray-2") inset;
+
     &-editable {
       box-shadow: 0 0 0 2px map-get($colors, "pink-3") inset,
         0 0 0 4px map-get($colors, "white") inset,
@@ -178,12 +182,15 @@ a {
         cursor: pointer;
       }
     }
+
     & text {
       font-family: $font-family;
     }
+
     & svg {
       width: 100%;
     }
+
     & img {
       max-width: calc($friend-list-item-height - $friend-list-item-padding * 2);
     }
@@ -210,6 +217,7 @@ a {
     }
   }
 }
+
 #save-button {
   background: map-get($colors, "cyan");
   border-color: color-mix(in srgb, map-get($colors, "cyan") 80%, #000);
@@ -222,6 +230,7 @@ a {
 #friend-form-message {
   color: map-get($colors, "pink-5");
 }
+
 #clear-list {
   color: map-get($colors, "red");
   &:hover {

@@ -302,7 +302,8 @@ button {
   cursor: pointer;
   border: 1px solid map-get($colors, "gray-3");
 }
-input {
+input,
+textarea {
   font-family: inherit;
   font-size: inherit;
   font-style: inherit;
@@ -311,6 +312,9 @@ input {
   padding: 0;
   margin: 0;
   opacity: 1; /* required on iOS */
+  &:disabled {
+    opacity: 1; /* required on iOS */
+  }
 }
 input[type="text"],
 input[type="number"],

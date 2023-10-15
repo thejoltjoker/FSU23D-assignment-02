@@ -3451,7 +3451,8 @@ button {
   border: 1px solid #cfd4e7;
 }
 
-input {
+input,
+textarea {
   font-family: inherit;
   font-size: inherit;
   font-style: inherit;
@@ -3459,6 +3460,10 @@ input {
   line-height: inherit;
   padding: 0;
   margin: 0;
+  opacity: 1; /* required on iOS */
+}
+input:disabled,
+textarea:disabled {
   opacity: 1; /* required on iOS */
 }
 

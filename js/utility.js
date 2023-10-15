@@ -1,4 +1,40 @@
 "use strict";
+
+const placeholderNames = [
+  "Al Beback",
+  "Anita Bath",
+  "Anna Sthesia",
+  "Art Major",
+  "Barb Dwyer",
+  "Barb Wire",
+  "Barry Cade",
+  "Candy Barr",
+  "Candy Cane",
+  "Connie Lingus",
+  "Crystal Ball",
+  "Dick Tater",
+  "Don Keigh",
+  "Hal O'Penyo",
+  "Ima Nutt",
+  "Justin Time",
+  "Justin Time",
+  "Luke Warm",
+  "Noah Fence",
+  "Olive Branch",
+  "Penny Loafer",
+  "Phil Harmonic",
+  "Phil McCavity",
+  "Robin Banks",
+  "Rusty Bridges",
+  "Rusty Keyes",
+  "Sandy Beach",
+  "Sue Flay",
+  "Sue Perb",
+  "Terry Cloth",
+  "Will Power",
+];
+
+// TODO Add JSDoc
 export const slideDown = (element) => {
   const offsetHeight = element.offsetHeight;
   console.log(offsetHeight);
@@ -51,4 +87,7 @@ export const formatPhoneNumber = (number) => {
     formattedNumber += number[i];
   }
   return formattedNumber;
+};
+export const randomName = () => {
+  return randomInArray(placeholderNames);
 };
