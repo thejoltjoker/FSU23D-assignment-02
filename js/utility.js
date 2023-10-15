@@ -34,35 +34,53 @@ const placeholderNames = [
   "Will Power",
 ];
 
-// TODO Add JSDoc
-export const slideDown = (element) => {
-  const offsetHeight = element.offsetHeight;
-  console.log(offsetHeight);
-  // Apply the new margin-top value with a negative sign
-  element.style.marginTop = `-${offsetHeight}px`;
-};
-
+/**
+ * Checks whether a given value is a valid phone number.
+ * This function uses a regular expression to match numeric digits, hyphens, and spaces.
+ *
+ * @param {string} value - The value to be checked for phone number format.
+ * @returns {boolean} - Returns true if the value matches the phone number format, otherwise false.
+ */
 export const isPhoneNumber = (value) => {
-  const re = /^[\d- ]+$/;
+  const re = /^[\d- ]+/;
   return re.exec(value) ? true : false;
 };
 
+/**
+ * Selects a random element from an array.
+ *
+ * @param {Array} arr - The array from which to select a random element.
+ * @returns {*} - A randomly selected element from the input array.
+ */
 export const randomInArray = (arr) => {
-  return arr[Math.floor(Math.random() * arr.length)];
+  const randomIndex = Math.floor(Math.random() * arr.length);
+  return arr[randomIndex];
 };
 
+/**
+ * Generates a random phone number string consisting of 10 numeric digits.
+ *
+ * @returns {string} - A randomly generated phone number string.
+ */
 export const randomPhoneNumber = () => {
   let number = "";
   while (number.length < 10) {
     number += Math.floor(Math.random() * 10);
   }
+
   return number;
 };
 
+/**
+ * Removes all non-digit characters from a string.
+ *
+ * @param {string} value - The input string containing non-digit characters.
+ * @returns {string} - A cleaned number string containing only digits.
+ */
 export const cleanNumber = (value) => {
-  // Remove all non-digit characters from the number
   let cleaned = "";
   for (let i of value) {
+    // Check if the character is a digit and append it to the cleaned number string.
     if (!isNaN(parseInt(i))) {
       cleaned += i;
     }
@@ -70,24 +88,44 @@ export const cleanNumber = (value) => {
   return cleaned;
 };
 
+/**
+ * Get the current cursor position (X and Y coordinates) from a mouse event.
+ *
+ * @param {MouseEvent} event - The mouse event from which to extract cursor position.
+ * @returns {Object} - An object containing 'x' and 'y' properties representing cursor coordinates.
+ */
 export const getCursorPos = (event) => {
   let x = event.clientX;
   let y = event.clientY;
-  return x, y;
+  return { x, y };
 };
 
+/**
+ * Formats a given phone number string with dashes and spaces in a standard format.
+ *
+ * @param {string} number - The phone number to be formatted.
+ * @returns {string} - The formatted phone number with dashes and spaces.
+ */
 export const formatPhoneNumber = (number) => {
   let formattedNumber = "";
+
   for (let i = 0; i < number.length; i++) {
-    if (i == 4) {
+    if (i === 4) {
       formattedNumber += "-";
-    } else if (i > 4 && i % 2 == 0) {
+    } else if (i > 4 && i % 2 === 0) {
       formattedNumber += " ";
     }
     formattedNumber += number[i];
   }
+
   return formattedNumber;
 };
+
+/**
+ * Generates a random name by selecting one from an array of placeholder names.
+ *
+ * @returns {string} - A randomly selected placeholder name.
+ */
 export const randomName = () => {
   return randomInArray(placeholderNames);
 };
