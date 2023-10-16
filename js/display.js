@@ -3,14 +3,20 @@ import { cleanNumber, formatPhoneNumber, isPhoneNumber } from "./utility.js";
 import { emojis } from "./emoji.js";
 const animationDuration = 500;
 // TODO Create modal class
+
 /**
+ * Creates a new HTML element with the specified attributes and appends it to a parent element.
  *
+ * @param {string} element - The HTML tag name of the element to create (default is "div").
+ * @param {object} attributes - An object containing the element's attributes and their values.
+ * @param {HTMLElement} parent - The parent element to which the created element will be appended (optional).
  *
- * @param {object} attributes
- * @return {element}
+ * @returns {HTMLElement} - The newly created HTML element with the specified attributes.
  */
 export const createElem = (element = "div", attributes, parent = null) => {
   const elem = document.createElement(element);
+
+  // Set values for all given attributes
   for (let [attr, value] of Object.entries(attributes)) {
     if (Array.isArray(value)) {
       value = value.join(" ");
@@ -24,13 +30,19 @@ export const createElem = (element = "div", attributes, parent = null) => {
   return elem;
 };
 
+/**
+ * Populates the list of friends in the HTML with data retrieved from storage.
+ *
+ * This function retrieves a list of friends from storage, and for each friend, it
+ * creates a new 'Friend' element and appends it to the #friends-list.
+ */
 export const populateList = () => {
   // Get friends from storage
-  const friends = storage.getFriends();
-  console.log(friends);
+  const friends = storage.getFriends(); // Assuming 'storage' is defined elsewhere
   const friendsList = document.querySelector("#friends-list");
+
   if (friends.length > 0) {
-    // For each friend add to list
+    // For each friend, add them to the list
     friends.forEach((f) => {
       console.log(`Friend #${f.id} ${f.name}`);
       const friend = new Friend(...Object.values(f), friendsList);
@@ -41,22 +53,40 @@ export const populateList = () => {
   }
 };
 
+/**
+ * Clear all friends from the #friends-list
+ */
 export const clearList = () => {
   // Get friends from storage
   const friendsList = document.querySelector("#friends-list");
   friendsList.innerHTML = "";
 };
 
+/**
+ * EmojiPicker class for displaying and selecting emojis in a box.
+ *
+ * This class creates a user interface for selecting emojis and allows users to pick an emoji,
+ * which triggers a provided callback function.
+ *
+ * @class EmojiPicker
+ * @param {Function} callback - A callback function to be invoked when an emoji is picked.
+ */
 export const EmojiPicker = class {
+  /**
+   * Creates a new EmojiPicker instance and displays the emoji picker UI.
+   * @constructor
+   * @param {Function} callback - A callback function to be invoked when an emoji is picked.
+   */
   constructor(callback) {
     this.callback = callback;
     this.show();
   }
 
+  /**
+   * Displays the emoji picker user interface.
+   */
   show = () => {
-    // Create ui elements
-    // <div class="modal-container flex transition display-none">
-    //   <div class="modal-content flex m-auto">
+    // Create UI elements
     this.pickerDiv = createElem(
       "div",
       {
@@ -74,7 +104,7 @@ export const EmojiPicker = class {
     );
     const ul = createElem("ul", { className: ["flex"] }, this.pickerDiv);
 
-    // Display emojis
+    // Add emojis
     emojis.forEach((emoji) => {
       let elem = createElem(
         "li",
@@ -91,7 +121,6 @@ export const EmojiPicker = class {
     });
 
     // Move to center
-    console.log(this.pickerDiv.style.margin);
     this.pickerDiv.style.left = (() => {
       let margin = (window.innerWidth - this.pickerDiv.offsetWidth) / 2;
       margin -= parseInt(window.getComputedStyle(this.pickerDiv).margin);
@@ -99,6 +128,10 @@ export const EmojiPicker = class {
     })();
   };
 
+  /**
+   * Picks an emoji, triggers the callback, and closes the picker.
+   * @param {string} emoji - The selected emoji.
+   */
   pick = (emoji) => {
     this.close();
     if (this.callback) {
@@ -106,6 +139,9 @@ export const EmojiPicker = class {
     }
   };
 
+  /**
+   * Closes the emoji picker UI by removing it from the document.
+   */
   close = () => {
     this.pickerDiv.remove();
   };
@@ -123,6 +159,10 @@ export const Friend = class {
     this.nameField;
     this.numberField;
   }
+
+  /**
+   * Enable editing of friend by enabling input fields and changing buttons.
+   */
   #enableEditing = () => {
     // Enable fields
     this.nameField.disabled = false;
@@ -141,6 +181,10 @@ export const Friend = class {
     // Set focus to name field
     this.nameField.focus();
   };
+
+  /**
+   * Disable editing of friend by disabling input fields and resetting buttons.
+   */
   #disableEditing = () => {
     // Disable fields
     this.nameField.disabled = true;
@@ -160,6 +204,10 @@ export const Friend = class {
 
     this.#resetButtons();
   };
+
+  /**
+   * Reset buttons to their original state, visually and functionally.
+   */
   #resetButtons = () => {
     const editButtonEmoji = this.editButton.querySelector(".emoji");
     const dropButtonEmoji = this.dropButton.querySelector(".emoji");
@@ -177,9 +225,10 @@ export const Friend = class {
     };
   };
 
+  /**
+   * Create the HTML structure for the friend.
+   */
   create = () => {
-    // Create the friend html structure
-
     // Container
     this.containerDiv = createElem("div", {
       id: `friend-${this.id}`,
@@ -226,6 +275,7 @@ export const Friend = class {
 
       metaForm
     );
+
     // Create input field for name
     this.nameField = createElem(
       "input",
@@ -233,7 +283,8 @@ export const Friend = class {
         className: [
           "transition",
           "color-gray-5",
-          "mb-2",
+          "mb-1",
+          "mb-md-2",
           "font-size-4",
           "font-size-sm-5",
           "font-size-lg-6",
@@ -243,6 +294,7 @@ export const Friend = class {
         name: `name-${this.id}`,
         id: `name-input-${this.id}`,
         value: this.name,
+        ariaLabel: "Name",
       },
       metaDiv
     );
@@ -259,10 +311,11 @@ export const Friend = class {
           "font-size-lg-4",
         ],
         disabled: true,
-        type: "text",
-        number: `number-${this.id}`,
+        type: "tel",
+        name: `number-${this.id}`,
         id: `number-input-${this.id}`,
         value: formatPhoneNumber(this.number),
+        ariaLabel: "Number",
       },
       metaDiv
     );
@@ -304,6 +357,7 @@ export const Friend = class {
       },
       buttonGroupDiv
     );
+
     this.dropButton.onclick = (e) => {
       e.preventDefault();
       this.drop();
@@ -331,6 +385,9 @@ export const Friend = class {
     }, animationDuration);
   };
 
+  /**
+   * Edit friend. Updates the friend in storage by getting the form values.
+   */
   edit = () => {
     console.log(`Editing friend #${this.id}`);
 
@@ -384,6 +441,6 @@ export const Friend = class {
     setTimeout(() => {
       // Remove friend from list
       this.containerDiv.remove();
-    }, 600);
+    }, animationDuration);
   };
 };
