@@ -42,7 +42,7 @@ const placeholderNames = [
  * @returns {boolean} - Returns true if the value matches the phone number format, otherwise false.
  */
 export const isPhoneNumber = (value) => {
-  const re = /^[\d- ]+/;
+  const re = /^\+?[\d -]+$/;
   return re.exec(value) ? true : false;
 };
 
@@ -72,13 +72,16 @@ export const randomPhoneNumber = () => {
 };
 
 /**
- * Removes all non-digit characters from a string.
+ * Removes all non-digit characters, except +, from a string.
  *
  * @param {string} value - The input string containing non-digit characters.
- * @returns {string} - A cleaned number string containing only digits.
+ * @returns {string} - A cleaned number string containing only digits and +.
  */
 export const cleanNumber = (value) => {
   let cleaned = "";
+
+  if (value.startsWith("+")) cleaned += "+";
+
   for (let i of value) {
     // Check if the character is a digit and append it to the cleaned number string.
     if (!isNaN(parseInt(i))) {
@@ -108,14 +111,25 @@ export const getCursorPos = (event) => {
  */
 export const formatPhoneNumber = (number) => {
   let formattedNumber = "";
+  let padding = 0;
+  // Try and add somewhat correct padding for country codes
+  if (number.startsWith("+")) {
+    padding = number.length - 10;
+  }
+
+  let lineIndex = 4 + padding;
 
   for (let i = 0; i < number.length; i++) {
-    if (i === 4) {
+    if (i === lineIndex) {
       formattedNumber += "-";
-    } else if (i > 4 && i % 2 === 0) {
+    } else if (padding == -1 || (i > lineIndex && i % 2 === 0)) {
+      // If paddding -1 to account for number starting with +
+      // Add spaces every two digits if line has been added
       formattedNumber += " ";
     }
+
     formattedNumber += number[i];
+    padding -= 1;
   }
 
   return formattedNumber;
