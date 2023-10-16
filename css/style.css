@@ -166,11 +166,11 @@
 }
 
 .color-gray-6 {
-  color: #9294af;
+  color: #707294;
 }
 
 .bg-gray-6 {
-  background-color: #9294af;
+  background-color: #707294;
 }
 
 .color-red {
@@ -3753,7 +3753,7 @@ a {
 .friend input[type=email]:disabled[id^=number-input],
 .friend input[type=tel]:disabled[id^=number-input],
 .friend textarea:disabled[id^=number-input] {
-  color: #9294af;
+  color: #707294;
 }
 .friend input[type=text]:focus,
 .friend input[type=number]:focus,
