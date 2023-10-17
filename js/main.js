@@ -62,6 +62,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }, animationDuration);
   };
 
+  const validFormData = (formData) => {
+    return formData.get("name") && isPhoneNumber(formData.get("number"));
+  };
+
   // Submit new friend
   form.addEventListener("submit", (e) => {
     // on form submission, prevent default
@@ -80,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const messageDiv = document.querySelector("#friend-form-message");
 
-    if (formData.get("name") && isPhoneNumber(formData.get("number"))) {
+    if (validFormData(formData)) {
       // perform operation with form input
       console.log(
         `New friend ${formData.get("name")} ${formData.get(
