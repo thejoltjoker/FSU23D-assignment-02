@@ -111,16 +111,16 @@ export const getCursorPos = (event) => {
  */
 export const formatPhoneNumber = (number) => {
   let formattedNumber = "";
-  let padding = 0;
+  let padding = -1;
   // Try and add somewhat correct padding for country codes
-  if (number.startsWith("+")) {
+  if (number.startsWith("+") && number.length > 10) {
     padding = number.length - 10;
   }
 
   let lineIndex = 4 + padding;
 
   for (let i = 0; i < number.length; i++) {
-    if (i === lineIndex) {
+    if (number.length > 10 && i === lineIndex) {
       formattedNumber += "-";
     } else if (padding == -1 || (i > lineIndex && i % 2 === 0)) {
       // If paddding -1 to account for number starting with +
