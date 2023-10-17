@@ -132,7 +132,7 @@ export const formatPhoneNumber = (number) => {
     padding -= 1;
   }
 
-  return formattedNumber;
+  return formattedNumber.trim();
 };
 
 /**
