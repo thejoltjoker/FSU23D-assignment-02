@@ -32,9 +32,6 @@ export const createElem = (element = "div", attributes, parent = null) => {
 
 /**
  * Populates the list of friends in the HTML with data retrieved from storage.
- *
- * This function retrieves a list of friends from storage, and for each friend, it
- * creates a new 'Friend' element and appends it to the #friends-list.
  */
 export const populateList = () => {
   // Get friends from storage
@@ -64,9 +61,6 @@ export const clearList = () => {
 
 /**
  * EmojiPicker class for displaying and selecting emojis in a box.
- *
- * This class creates a user interface for selecting emojis and allows users to pick an emoji,
- * which triggers a provided callback function.
  *
  * @class EmojiPicker
  * @param {Function} callback - A callback function to be invoked when an emoji is picked.
@@ -443,4 +437,226 @@ export const Friend = class {
       this.containerDiv.remove();
     }, animationDuration);
   };
+};
+
+/**
+ * @param {HTMLElement} content
+ */
+
+export const Modal = class {
+  constructor(content) {
+    this.modalContainer = createElem(
+      "div",
+      {
+        classList: [
+          "modal-container",
+          "flex",
+          "items-center",
+          "transition",
+          "display-none",
+        ],
+      },
+      "body"
+    );
+    this.modalContent = createElem(
+      "div",
+      {
+        classList: [
+          "modal-content",
+          "flex",
+          "artboard",
+          "radius-4",
+          "shadow-lg",
+          "mx-auto",
+          "p-3",
+        ],
+      },
+      this.modalContainer
+    );
+  }
+
+  show = () => {
+    this.modalContainer.classList.add("fade-in");
+    this.modalContainer.classList.remove("display-none");
+
+    setTimeout(() => {
+      this.modalContainer.classList.remove("fade-in");
+    }, animationDuration);
+  };
+
+  hide = () => {
+    this.modalContainer.classList.add("fade-out");
+    setTimeout(() => {
+      this.modalContainer.classList.add("display-none");
+      this.modalContainer.classList.remove("fade-out");
+    }, animationDuration);
+  };
+
+  // Testing stuff
+  // showModal();
+
+  // const testArea = document.querySelector("#test-area");
+  // const emojiPicker = new display.EmojiPicker(testArea);
+};
+
+export const NewFriendModal = class {
+  // <form >
+  //   <div class="mb-2 font-bold color-gray-4">
+  //     <label for="name">Name</label>
+  //   </div>
+  //   <div id="friend-form-name" class="mb-4 font-size-5">
+  //     <div class="emoji z-30">👤</div>
+  //     <input
+  //       type="text"
+  //       name="name"
+  //       id="input-name"
+  //       class="transition"
+  //     />
+  //   </div>
+
+  //   <div class="mb-2 font-bold color-gray-4">
+  //     <label for="number">Number</label>
+  //   </div>
+  //   <div class="mb-4 font-size-5">
+  //     <input
+  //       type="tel"
+  //       name="number"
+  //       id="input-number"
+  //       class="transition"
+  //     />
+  //   </div>
+  //   <div
+  //     id="friend-form-message"
+  //     class="display-none text-center pb-4 transition"
+  //   >
+  //     &nbsp;
+  //   </div>
+  //   <button
+  //     type="submit"
+  //     id="save-button"
+  //     class="button p-2 font-size-4 font-bold transition"
+  //   >
+  //     😻 Save 😻
+  //   </button>
+  // </form>
+
+  create = () => {
+    this.mainDiv = createElem("div", { classList: ["flex", "flex-col"] });
+    const wavingHandDiv = createElem(
+      "div",
+      {
+        classList: ["text-center", "font-size-7", "mt-6", "pb-6", "no-select"],
+      },
+      this.mainDiv
+    );
+    const h2 = createElem(
+      "h2",
+      {
+        classList: ["text-center", "mb-6", "font-bold"],
+        innerText: "✨ New friend, yay ✨",
+      },
+      this.mainDiv
+    );
+    const form = createElem(
+      "form",
+      {
+        id: "friend-form",
+        method: "post",
+        classList: ["flex", "flex-col"],
+      },
+      this.mainDiv
+    );
+
+    // Create the "Name" section
+    const nameSection = createElem(
+      "div",
+      {
+        classList: ["mb-2", "font-bold", "color-gray-4"],
+      },
+      form
+    );
+    const nameLabel = createElem(
+      "label",
+      { for: "name", textContent: "Name" },
+      nameSection
+    );
+
+    const nameInputSection = createElem(
+      "div",
+      {
+        id: "friend-form-name",
+        classList: ["mb-4", "font-size-5"],
+      },
+      form
+    );
+
+    const nameEmoji = createElem(
+      "div",
+      {
+        classList: ["emoji", "z-30"],
+        textContent: "👤",
+      },
+      nameInputSection
+    );
+
+    const nameInput = createElem(
+      "input",
+      {
+        type: "text",
+        name: "name",
+        id: "input-name",
+        class: "transition",
+      },
+      nameInputSection
+    );
+
+    // Create the number section
+    const numberSection = createElem("div", {
+      classList: ["mb-2", "font-bold", "color-gray-4"],
+    },form);
+    const numberLabel = createElem("label", { for: "number" });
+    numberLabel.textContent = "Number";
+    numberSection.appendChild(numberLabel);
+
+    const numberInputSection = createElem("div", {
+      classList: ["mb-4", "font-size-5"],
+    });
+    const numberInput = createElem(
+      "input",
+      {
+        type: "tel",
+        name: "number",
+        id: "input-number",
+        class: "transition",
+      },
+      numberInputSection
+    );
+
+    numberInputSection.appendChild(numberInput);
+
+    // Create the "Message" section
+    const messageSection = createElem("div", {
+      id: "friend-form-message",
+      classList: ["display-none", "text-center", "pb-4", "transition"],
+    });
+    messageSection.textContent = " ";
+
+    // Create the "Save" button
+    const saveButton = createElem("button", {
+      type: "submit",
+      id: "save-button",
+      class: ["button", "p-2", "font-size-4", "font-bold", "transition"],
+    });
+    saveButton.textContent = "😻 Save 😻";
+
+
+    form.appendChild(nameSection);
+form.appendChild(nameInputSection);
+form.appendChild(numberSection);
+form.appendChild(numberInputSection);
+form.appendChild(messageSection);
+form.appendChild(saveButton);
+  };
+
+  
 };

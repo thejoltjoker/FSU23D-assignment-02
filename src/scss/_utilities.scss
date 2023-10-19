@@ -369,8 +369,10 @@ textarea {
   overflow-y: auto;
   outline: 0;
 }
+
 .modal-content {
   max-width: 100%;
+  height: fit-content;
 }
 
 .display-none {

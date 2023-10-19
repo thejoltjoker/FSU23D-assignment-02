@@ -7,6 +7,11 @@ import { randomPhoneNumber, isPhoneNumber, randomName } from "./utility.js";
 const animationDuration = 500;
 // TODO Create new contact class
 
+const validateForm = (name, number) => {
+  // TODO validate form function
+  return { isValid: false, message: "" };
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   // Get friends from localStorage on page load
   const friendsList = document.querySelector("#friends-list");
