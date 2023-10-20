@@ -2,7 +2,6 @@ import * as storage from "./storage.js";
 import { cleanNumber, formatPhoneNumber, isPhoneNumber } from "./utility.js";
 import { emojis } from "./emoji.js";
 const animationDuration = 500;
-// TODO Create modal class
 
 /**
  * Creates a new HTML element with the specified attributes and appends it to a parent element.
@@ -388,6 +387,21 @@ export const Friend = class {
   /**
    * Edit friend. Updates the friend in storage by getting the form values.
    */
+  #validateEdit = () => {
+    if (this.nameField.value != "" && isPhoneNumber(this.numberField.value)) {
+      storage.updateFriend(
+        this.id,
+        this.nameField.value,
+        this.numberField.value,
+        this.avatarDiv.textContent
+      );
+      this.#disableEditing();
+    } else {
+      this.nameField.placeholder = "Can't be blank";
+      this.numberField.placeholder = "Can't be blank";
+    }
+  };
+
   edit = () => {
     console.log(`Editing friend #${this.id}`);
 
@@ -403,20 +417,9 @@ export const Friend = class {
 
     this.editButton.onclick = (e) => {
       e.preventDefault();
-      // Validate data
 
-      if (this.nameField.value != "" && isPhoneNumber(this.numberField.value)) {
-        storage.updateFriend(
-          this.id,
-          this.nameField.value,
-          this.numberField.value,
-          this.avatarDiv.textContent
-        );
-        this.#disableEditing();
-      } else {
-        this.nameField.placeholder = "Can't be blank";
-        this.numberField.placeholder = "Can't be blank";
-      }
+      // Validate data
+      this.#validateEdit();
     };
 
     this.dropButton.onclick = (e) => {

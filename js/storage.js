@@ -1,7 +1,5 @@
 import { cleanNumber } from "./utility.js";
 
-// TODO Update documentation
-
 /**
  * Retrieves the list of friends from local storage.
  * @returns {Array} An array of friend objects, or an empty array if there are no friends.

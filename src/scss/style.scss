@@ -94,6 +94,12 @@ a {
     }
   }
 
+  & form {
+    & input::placeholder {
+      color: map-get($colors, "gray-4");
+    }
+  }
+
   button {
     .emoji {
       @include transition();

@@ -3705,6 +3705,12 @@ a {
 .friend-editable:hover {
   background-color: #fbe6ec !important;
 }
+.friend form input::-moz-placeholder {
+  color: #545477;
+}
+.friend form input::placeholder {
+  color: #545477;
+}
 .friend button .emoji {
   transition: all 0.3s ease;
 }

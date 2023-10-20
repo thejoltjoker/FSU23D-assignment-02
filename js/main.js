@@ -5,7 +5,6 @@ import * as storage from "./storage.js";
 import { randomPhoneNumber, isPhoneNumber, randomName } from "./utility.js";
 
 const animationDuration = 500;
-// TODO Create new contact class
 
 document.addEventListener("DOMContentLoaded", () => {
   // Get friends from localStorage on page load
@@ -66,24 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
     return formData.get("name") && isPhoneNumber(formData.get("number"));
   };
 
-  // Submit new friend
-  form.addEventListener("submit", (e) => {
-    // on form submission, prevent default
-    e.preventDefault();
-
-    // construct a FormData object, which fires the formdata event
-    new FormData(form);
-  });
-
-  form.addEventListener("formdata", (e) => {
-    // Get the form data from the event object
-    const formData = e.formData;
-
-    // Add emoji to formdata
-    formData.set("emoji", formEmoji.textContent);
-
+  const validateNewFriendForm = (formData) => {
     const messageDiv = document.querySelector("#friend-form-message");
-
     if (validFormData(formData)) {
       // perform operation with form input
       console.log(
@@ -111,12 +94,31 @@ document.addEventListener("DOMContentLoaded", () => {
       messageDiv.innerText = `🤔 ${formData.get("number")} is not a number1...`;
       console.log(`${formData.get("number")} is not a number...`);
     } else {
-      // TODO Slide down error message
       messageDiv.innerText = `🤓 You need to fill out all fields!`;
       messageDiv.classList.remove("display-none");
 
       console.log("No new friends for you...");
     }
+  };
+
+  // Submit new friend
+  form.addEventListener("submit", (e) => {
+    // on form submission, prevent default
+    e.preventDefault();
+
+    // construct a FormData object, which fires the formdata event
+    new FormData(form);
+  });
+
+  form.addEventListener("formdata", (e) => {
+    // Get the form data from the event object
+    const formData = e.formData;
+
+    // Add emoji to formdata
+    formData.set("emoji", formEmoji.textContent);
+
+    // Validate form and do things
+    validateNewFriendForm(formData);
   });
 
   // Clear list
